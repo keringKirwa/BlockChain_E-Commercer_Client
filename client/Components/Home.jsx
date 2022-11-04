@@ -5,7 +5,7 @@ export const HomePage = () => {
 
   return (
     <div>
-      <div className="main-app">This is the home page of the application </div>
+      <div className="bg-danger">This is the home page of the application </div>
     </div>
   );
 };

@@ -1,0 +1,22 @@
+.appBarMain {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+
+}
+.shopIcon{
+    width: 100px;
+    height: 40px;
+    color: beige;
+    margin: 5px;
+   
+}
+
+.appName{
+
+font-size:40px;
+background-image: linear-gradient(60deg,#f96060, #5e78cc );
+    background-clip: text;
+    color: transparent;
+    
+}

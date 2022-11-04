@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { HomePage } from "../Components/Home";
 
-export default function Home() {
+export default function App() {
   return (
     <div className={styles.container}>
       <Head>
