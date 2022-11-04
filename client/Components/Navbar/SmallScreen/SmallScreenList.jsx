@@ -5,13 +5,16 @@ import { Modal } from "./Modal";
 
 import styles from "./SmallScreen.module.css";
 
-export const SmallScreenList = () => {
+export const SmallScreenList = ({
+  handleLoginRequest,
+  handleRegisterRequest,
+}) => {
   const [whenModelIsNotOpen, updateOpen] = useState(true);
   const setOpen = () => {
     updateOpen((prevIsOpen) => !prevIsOpen);
   };
   return (
-    <div className="d-flex d-md-none d-lg-none  d-xl-none">
+    <div className="d-flex d-md-flex d-lg-none  d-xl-none">
       {whenModelIsNotOpen && (
         <GiHamburgerMenu className={styles.hamburger} onClick={setOpen} />
       )}
@@ -23,6 +26,8 @@ export const SmallScreenList = () => {
           styles={styles}
           whenModelIsNotOpen={whenModelIsNotOpen}
           setOpen={setOpen}
+          handleLoginRequest={handleLoginRequest}
+          handleRegisterRequest={handleRegisterRequest}
         />
       )}
     </div>

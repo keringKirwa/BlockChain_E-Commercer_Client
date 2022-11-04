@@ -1,15 +1,30 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import { list } from "./List";
-import { BigScreenList } from "./LargeScreen/BigScreenList";
+import { BigScreenListItem } from "./LargeScreen/BigScreenList";
 import { SmallScreenList } from "./SmallScreen/SmallScreenList";
 import { BsFillDiagram3Fill } from "react-icons/bs";
+import { AiOutlineLogin } from "react-icons/ai";
+import { MdOutlinePersonAddAlt } from "react-icons/md";
+
 import styles from "../Navbar/Navbar.module.css";
 
 const Navbar = () => {
-  const [selected, setSelected] = useState("featured");
+  const router = useRouter();
+  const [selected, setSelected] = useState("home");
+  const handleLoginRequest = (e) => {
+    e.preventDefault();
+    router.push("/login");
+  };
+
+  const handleRegisterRequest = (e) => {
+    e.preventDefault();
+    router.push("/register");
+  };
+
   return (
     <div
-      className={`${styles.appBarMain} row flex-start bg-dark align-items-center`}
+      className={`${styles.appBarMain} container-fluid flex-start bg-dark align-items-center px-4`}
     >
       <div className="row center">
         <BsFillDiagram3Fill className={styles.shopIcon}></BsFillDiagram3Fill>
@@ -17,11 +32,14 @@ const Navbar = () => {
         <h3 className={styles.appName}>WingsSide</h3>
       </div>
 
-      <SmallScreenList></SmallScreenList>
+      <SmallScreenList
+        handleLoginRequest={handleLoginRequest}
+        handleRegisterRequest={handleRegisterRequest}
+      ></SmallScreenList>
 
-      <ul className="justify-content-center d-none  d-xs-none d-sm-none d-md-flex  d-lg-flex main-secondary">
+      <div className="justify-content-center d-none d-md-none d-lg-flex text-none">
         {list.map((listItem) => (
-          <BigScreenList
+          <BigScreenListItem
             key={listItem.id}
             title={listItem.title}
             active={selected === listItem.id}
@@ -29,7 +47,14 @@ const Navbar = () => {
             id={listItem.id}
           />
         ))}
-      </ul>
+        <button className={styles.button} onClick={handleLoginRequest}>
+          <AiOutlineLogin className={styles.buttonIcon} /> Login
+        </button>
+        <button className={styles.button} onClick={handleRegisterRequest}>
+          {" "}
+          <MdOutlinePersonAddAlt className={styles.buttonIcon} /> Register
+        </button>
+      </div>
     </div>
   );
 };

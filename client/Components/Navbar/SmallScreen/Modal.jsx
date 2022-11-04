@@ -4,10 +4,14 @@ import { AiOutlineLogin } from "react-icons/ai";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
 import image from "../../../public/block.svg";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
-export const Modal = ({ styles, whenModelIsNotOpen, setOpen }) => {
-  const router = useRouter();
+export const Modal = ({
+  styles,
+  whenModelIsNotOpen,
+  setOpen,
+  handleLoginRequest,
+  handleRegisterRequest,
+}) => {
   const listItems = [
     { page: "/home", text: "Home Page" },
     { page: "/shops", text: "See Available Shops" },
@@ -15,15 +19,6 @@ export const Modal = ({ styles, whenModelIsNotOpen, setOpen }) => {
     { page: "/about-us", text: "About us" },
   ];
   const list = ["/home", "/about-us", "/shops", "/products"];
-  const handleLoginRequest = (e) => {
-    e.preventDefault();
-    router.push("/login");
-  };
-
-  const handleRegisterRequest = (e) => {
-    e.preventDefault();
-    router.push("/register");
-  };
 
   return (
     <div

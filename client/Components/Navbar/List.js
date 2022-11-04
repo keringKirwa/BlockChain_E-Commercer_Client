@@ -4,19 +4,15 @@ export const list = [
     title: "Home",
   },
   {
-    id: "about-me",
-    title: "AboutMe",
+    id: "about-us",
+    title: "AboutUs",
   },
   {
-    id: "resume",
-    title: "Resume",
+    id: "shops",
+    title: "shops",
   },
   {
-    id: "contact-me",
-    title: "ContactMe",
-  },
-  {
-    id: "testimaonials",
-    title: "Testimonials",
+    id: "contact-us",
+    title: "ContactUs",
   },
 ];

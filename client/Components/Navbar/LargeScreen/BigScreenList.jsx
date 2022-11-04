@@ -1,20 +1,16 @@
 import React from "react";
+import Link from "next/link";
 
-export const BigScreenList = ({ title, id, active, setSelected }) => {
+import styles from "./BigScreenList.module.css";
+
+export const BigScreenListItem = ({ title, id, setSelected }) => {
   return (
     <>
-      <li
-        className={
-          active ? "nav-item active text-danger" : "nav-item text-primary"
-        }
-        onClick={() => {
-          setSelected(id);
-        }}
-      >
-        <a className="nav-link" href={`#`}>
-          {title}
-        </a>
-      </li>
+      <div>
+        <Link href={`\${id }`} className={styles.listItem}>
+          <button className={ styles.buttonLink}>{title}</button>
+        </Link>
+      </div>
     </>
   );
 };
