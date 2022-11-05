@@ -1,0 +1,89 @@
+.homeComponent{
+    display: flex;
+    flex-direction: column;
+    align-items: center!important;
+    justify-content: center;
+    margin-top: 10%;
+    position: fixed;
+    inset: 0;
+
+
+}
+
+
+.text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.welcome{
+    font-size: 50px;
+    font-weight:bold;
+    line-height: 50px;
+    background-image: linear-gradient(60deg, #040305fd, #e80909db);
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1px !important;
+}
+.simpleText{
+    font-size: 20px;
+}
+
+.blockImages {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+}
+
+.textSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttonHome{
+    width: 200px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    font-size: 23px;
+    margin-top: 20px;
+}
+.buttonHome:hover{
+    color: rgb(191, 216, 237);
+    transform: scale(1.1);
+    transition-duration: 1s;
+}
+
+
+@media screen and (max-width: 360px) {
+    .welcome {
+        margin-top: 10px;
+       font-size: 30px;
+       flex: auto;
+
+    }
+}
+
+.slideIn {
+    animation: slide-in .5s forwards;
+    -webkit-animation: slide-in .6s forwards;
+    animation-delay: 2s;
+}
+
+@keyframes slide-in {
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@-webkit-keyframes slide-in {
+    100% {
+        -webkit-transform: translateX(0%);
+    }
+}

@@ -1,8 +1,9 @@
 .appBarMain {
     display: flex;
-    justify-content: space-between;
-    position: relative;
-    ;
+    justify-content: space-between !important;
+    position: fixed;
+    z-index: 5;
+    
 
 }
 .shopIcon{
@@ -33,5 +34,14 @@ font-size:40px;
 background-image: linear-gradient(60deg,#f96060, #5e78cc );
     background-clip: text;
     color: transparent;
+    margin-right: 5px;
+    
+}
+
+@media screen and (max-width: 360px) {
+    .appName {
+        margin: 4px;
+        font-size:30px ;
+    }
     
 }

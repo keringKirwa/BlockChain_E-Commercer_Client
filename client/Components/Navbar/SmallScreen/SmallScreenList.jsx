@@ -12,9 +12,11 @@ export const SmallScreenList = ({
   const [whenModelIsNotOpen, updateOpen] = useState(true);
   const setOpen = () => {
     updateOpen((prevIsOpen) => !prevIsOpen);
+    console.log("modal was triggered");
+    console.log(whenModelIsNotOpen);
   };
   return (
-    <div className="d-flex d-md-flex d-lg-none  d-xl-none">
+    <div className="d-block d-md-flex d-lg-none  d-xl-none">
       {whenModelIsNotOpen && (
         <GiHamburgerMenu className={styles.hamburger} onClick={setOpen} />
       )}

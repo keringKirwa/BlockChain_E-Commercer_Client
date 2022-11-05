@@ -3,7 +3,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  width: 100%;
 }
 
 a {
@@ -35,4 +36,70 @@ ul {
   align-items: center;
 }
 
+.slideFromLeft {
+  transform: translateX(-400%);
+  -webkit-transform: translateX(-400%);
+  animation: slide-in .7s forwards;
+  -webkit-animation: slide-in .6s forwards;
+  animation-delay: .1s;
+}
 
+.slideIn{
+  transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    animation: slide-in .7s forwards;
+    -webkit-animation: slide-in .6s forwards;
+
+}
+.slideFromRight{
+  transform: translateX(+200%);
+  -webkit-transform: translateX(+200%);
+  animation: slide-in .6s forwards;
+  -webkit-animation: slide-from-right .6s forwards;
+  animation-delay: .1s;
+
+}
+
+@keyframes slide-in {
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@-webkit-keyframes slide-in {
+  100% {
+    -webkit-transform: translateX(0%);
+  }
+}
+
+@keyframes slide-from-right{
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@-webkit-keyframes slide-from-right {
+  100% {
+    -webkit-transform: translateX(0%);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@-webkit-keyframes slide-out {
+  0% {
+    -webkit-transform: translateX(0%);
+  }
+
+  100% {
+    -webkit-transform: translateX(-100%);
+  }
+}

@@ -1,0 +1,7 @@
+.layout{
+    position: absolute;
+    min-height: 100vh;
+    min-width: 100% !important;
+    height: 1000px;
+
+}

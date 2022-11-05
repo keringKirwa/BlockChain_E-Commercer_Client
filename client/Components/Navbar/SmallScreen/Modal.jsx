@@ -23,7 +23,7 @@ export const Modal = ({
   return (
     <div
       className={`${styles.modal} ${
-        !whenModelIsNotOpen && styles.slideIn
+        !whenModelIsNotOpen && "slideIn"
       } container`}
     >
       <p className={`${styles.textGradient} text-center`}>
@@ -33,7 +33,7 @@ export const Modal = ({
 
       <div className={`${styles.mainLinkBox} m-4 text-center row `}>
         {listItems.map((item, key) => (
-          <div className={`${styles.linkBoxItem} m-2 text-center`}>
+          <div className={`${styles.linkBoxItem} m-2 text-center`} key={key}>
             <Link href={item.page} onClick={setOpen} className={styles.link}>
               {item.text}
             </Link>

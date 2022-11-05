@@ -14,10 +14,8 @@
     background-color:beige;
     padding: 30px;
     border-radius: 4px;
-    transform: translateX(-100%);
-    -webkit-transform: translateX(-100%);
     border: 1px solid rgb(197, 191, 191);
-    z-index: 3;
+    z-index: 5;
     height: 100vh;
     max-width: 100%;
 
@@ -66,15 +64,6 @@
     border-radius: 5px;
     margin: 5px;
 
-}
-.slideIn {
-    animation: slide-in 5s forwards;
-    -webkit-animation: slide-in .6s forwards;
-}
-
-.slideOut {
-    animation: slide-out 1s forwards;
-    -webkit-animation: slide-out 0.6s forwards;
 }
 
 .button{
