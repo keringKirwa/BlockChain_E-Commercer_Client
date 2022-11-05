@@ -1,6 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
-import { HomePage } from "../Components/HomePage/Home";
+import { HomePage } from "../Components/HomePage/HomePage";
 
 export default function App() {
   return (

@@ -1,0 +1,77 @@
+
+
+.error{
+    color: red;
+}
+
+.success{
+    border: greenyellow;
+
+
+}
+.inputElement{
+  
+    border: 1px solid black;
+    height: 50px;
+    width: 450px;
+    border-radius: 6px;
+    padding: 10px;
+    margin: 5px 0px;
+
+}
+.submitButtonComponent{
+    border-radius: 10px;
+    width:50%;
+    height: 50px;
+    border-color: black;
+    margin-top: 20px;
+   
+}
+
+.successButton :hover{
+    transform: scale(1.1);
+}
+
+.unlockIcon{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color:black;
+    margin-left: 10px;
+}
+.submitText{
+    font-size: 27px;
+    margin: 0px 30px;
+}
+
+.registerText{
+    font-size: 30px;
+    color: black;
+   
+}
+.formCSS {
+      padding: 20px;
+      margin-top: 20px;
+
+}
+
+@media screen and (max-width: 600px) {
+   
+
+    .formCSS{
+        width: 100%!important;
+
+    }
+    .inputElement {
+             width: 280px;
+             margin: 10px 0px;
+         }
+
+    .submitButtonComponent{
+        width: 100%;
+    }
+    
+
+        
+
+}

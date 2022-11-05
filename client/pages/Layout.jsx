@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "../Components/Navbar/Navbar";
 import styles from "./Layout.module.css";
+import { Toaster } from "react-hot-toast";
 
 export default function Layout({ children }) {
   return (

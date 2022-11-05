@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import styles from "../HomePage/Home.module.css";
+import styles from "../HomePage/HomePage.module.css";
 import image from "../../public/block.svg";
 import { BsArrowRightSquare } from "react-icons/bs";
+
 import { useRouter } from "next/router";
 
 export const HomePage = () => {
@@ -40,8 +41,8 @@ export const HomePage = () => {
           Online Marketing Platform
         </div>
         <p className={`${styles.simpleText} center text-center`}>
-          Buy And sell products using dApp.Smart Transactions with Smart
-          Contracts.
+          Buy And sell products using dApp.Smart Contracts For Smart
+          Transactions.
         </p>
       </div>
 

@@ -1,8 +1,7 @@
 .appBarMain {
     display: flex;
     justify-content: space-between !important;
-    position: fixed;
-    z-index: 5;
+   
     
 
 }
