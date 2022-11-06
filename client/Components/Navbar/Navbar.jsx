@@ -13,7 +13,7 @@ import styles from "../Navbar/Navbar.module.css";
 
 const Navbar = () => {
   const router = useRouter();
-  const [selected, setSelected] = useState("home");
+
   const handleLoginRequest = (e) => {
     e.preventDefault();
     router.push("/login");
@@ -44,8 +44,6 @@ const Navbar = () => {
           <BigScreenListItem
             key={listItem.id}
             title={listItem.title}
-            active={selected === listItem.id}
-            setSelected={setSelected}
             id={listItem.id}
           />
         ))}

@@ -1,0 +1,5 @@
+cloudinary.config({ 
+  cloud_name: 'dirasazrt', 
+  api_key: '437955112533727', 
+  api_secret: '4VSyiy5EwEvQxHPo7XS6IZoNF7o' 
+});

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdCut } from "react-icons/io";
@@ -5,11 +6,20 @@ import { Modal } from "./Modal";
 
 import styles from "./SmallScreen.module.css";
 
-export const SmallScreenList = ({
-  handleLoginRequest,
-  handleRegisterRequest,
-}) => {
+export const SmallScreenList = () => {
+  const router = useRouter();
   const [whenModelIsNotOpen, updateOpen] = useState(true);
+  const handleRegisterRequest = (e) => {
+    e.preventDefault();
+    updateOpen((prevOpen) => !prevOpen);
+    router.push("/register");
+  };
+  const handleLoginRequest = (e) => {
+    e.preventDefault();
+    router.push("/login");
+    updateOpen((prevOpen) => !prevOpen);
+  };
+
   const setOpen = () => {
     updateOpen((prevIsOpen) => !prevIsOpen);
   };
