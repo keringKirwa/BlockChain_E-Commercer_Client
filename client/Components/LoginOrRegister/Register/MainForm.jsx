@@ -9,7 +9,7 @@ export const MainForm = ({
   styles,
 }) => {
   return (
-    <div>
+    <>
       <input
         autoComplete="off"
         name="firstName"
@@ -21,7 +21,9 @@ export const MainForm = ({
         className={
           touched.firstName && errors.firstName
             ? `${styles.error} ${styles.inputElement} `
-            : `${styles.success} ${styles.inputElement}`
+            : touched.firstName && !errors.firstName
+            ? `${styles.success} ${styles.inputElement}`
+            : `${styles.inputElement}`
         }
       />
       <p className="text-danger">
@@ -38,7 +40,9 @@ export const MainForm = ({
         className={
           touched.lastName && errors.lastName
             ? `${styles.error} ${styles.inputElement} `
-            : `${styles.success} ${styles.inputElement}`
+            : touched.lastName && !errors.lastName
+            ? `${styles.success} ${styles.inputElement}`
+            : `${styles.inputElement}`
         }
       />
       <p className="text-danger">
@@ -55,7 +59,9 @@ export const MainForm = ({
         className={
           touched.emailAddress && errors.emailAddress
             ? `${styles.error} ${styles.inputElement} `
-            : `${styles.success} ${styles.inputElement}`
+            : touched.emailAddress && !errors.emailAddress
+            ? `${styles.success} ${styles.inputElement}`
+            : `${styles.inputElement}`
         }
       />
       <p className="text-danger">
@@ -72,7 +78,9 @@ export const MainForm = ({
         className={
           touched.buyerEthAddress && errors.buyerEthAddress
             ? `${styles.error} ${styles.inputElement} `
-            : `${styles.success} ${styles.inputElement}`
+            : touched.buyerEthAddress && !errors.buyerEthAddress
+            ? `${styles.success} ${styles.inputElement}`
+            : `${styles.inputElement}`
         }
       />
       <p className="text-danger">
@@ -91,7 +99,9 @@ export const MainForm = ({
         className={
           touched.password && errors.password
             ? `${styles.error} ${styles.inputElement} `
-            : `${styles.success} ${styles.inputElement}`
+            : touched.password && !errors.password
+            ? `${styles.success} ${styles.inputElement}`
+            : `${styles.inputElement}`
         }
       />
       <p className="text-danger">
@@ -108,7 +118,9 @@ export const MainForm = ({
         className={
           touched.confirmPassword && errors.confirmPassword
             ? `${styles.error} ${styles.inputElement} `
-            : `${styles.success} ${styles.inputElement}`
+            : touched.confirmPassword && !errors.confirmPassword
+            ? `${styles.success} ${styles.inputElement}`
+            : `${styles.inputElement}`
         }
       />
       <p className="text-danger">
@@ -116,6 +128,6 @@ export const MainForm = ({
           touched.confirmPassword &&
           errors.confirmPassword}
       </p>
-    </div>
+    </>
   );
 };

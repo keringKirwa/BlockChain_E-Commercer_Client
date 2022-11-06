@@ -22,9 +22,15 @@ export const RegisterSchema = Yup.object().shape({
     .required("Email is required !"),
 
   password: Yup.string()
-    .min(5, "password too short !")
-    .max(10, "password too long !"),
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Must have 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    )
+    .required("password required"),
   confirmPassword: Yup.string()
-    .min(4, "confirm password required")
-    .required("confirm Password Required"),
+    .required("passwordConfirmation required")
+    .oneOf(
+      [Yup.ref("password"), null],
+      "Password and passwordConfirmation must match"
+    ),
 });

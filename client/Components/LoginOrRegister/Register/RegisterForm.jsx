@@ -10,10 +10,6 @@ import { RegisterSchema } from "./Yup.js";
 import { MainForm } from "./MainForm";
 
 export const RegisterForm = () => {
-  const handleClick = () => {
-    console.log("Button clicked ");
-  };
-
   return (
     <Formik
       initialValues={{
@@ -25,9 +21,12 @@ export const RegisterForm = () => {
         confirmPassword: "",
       }}
       validationSchema={RegisterSchema}
-      onSubmit={(values, { resetForm }) => {
-        alert(JSON.stringify(values));
-        console.log(values);
+      onSubmit={(values, { resetForm, setSubmitting }) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+
+          setSubmitting(false);
+        }, 400);
       }}
     >
       {({
@@ -36,6 +35,8 @@ export const RegisterForm = () => {
         touched,
         dirty,
         handleChange,
+        isSubmitting,
+        handleSubmit,
 
         handleBlur,
 
@@ -45,6 +46,7 @@ export const RegisterForm = () => {
           <div className={`${styles.stupidForm}  text-info container-fluid `}>
             <form
               noValidate
+              onSubmit={handleSubmit}
               className={`${styles.formCSS} d-flex justify-content-center align-items-center flex-column `}
             >
               <span className={styles.registerText}>
@@ -63,7 +65,10 @@ export const RegisterForm = () => {
               ></MainForm>
               <button
                 type="submit"
-                disabled={!(dirty && isValid) || dirty}
+                disabled={isSubmitting || (dirty && !isValid)}
+                onClick={() => {
+                  console.log("button clicked");
+                }}
                 className={
                   dirty && isValid
                     ? `${styles.submitButtonComponent} bg-dark text-info`

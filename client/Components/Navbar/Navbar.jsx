@@ -3,7 +3,9 @@ import { useRouter } from "next/router";
 import { list } from "./List";
 import { BigScreenListItem } from "./LargeScreen/BigScreenList";
 import { SmallScreenList } from "./SmallScreen/SmallScreenList";
+
 import { BsFillDiagram3Fill } from "react-icons/bs";
+import { SiPrestashop } from "react-icons/si";
 import { AiOutlineLogin } from "react-icons/ai";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
 
@@ -27,7 +29,7 @@ const Navbar = () => {
       className={`${styles.appBarMain}  flex-start bg-dark align-items-center px-4`}
     >
       <div className="row center">
-        <BsFillDiagram3Fill className={styles.shopIcon}></BsFillDiagram3Fill>
+        <SiPrestashop className={styles.shopIcon}></SiPrestashop>
 
         <h3 className={styles.appName}>WingsSide</h3>
       </div>

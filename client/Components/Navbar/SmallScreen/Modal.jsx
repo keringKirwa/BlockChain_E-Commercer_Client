@@ -26,8 +26,8 @@ export const Modal = ({
         !whenModelIsNotOpen && "slideFromLeft"
       } container-fluid  `}
     >
-      <p className={`${styles.textGradient} center row  `}>
-        Welcome to WingsSide, An Online Web3 Market Platform
+      <p className={`${styles.textGradient} text-center center row  `}>
+        WingsSide,The Best Online Market Platform
         <Image src={image} alt="block image" className={styles.block}></Image>
       </p>
 
