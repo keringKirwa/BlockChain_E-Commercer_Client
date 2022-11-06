@@ -23,8 +23,8 @@ export const Modal = ({
   return (
     <div
       className={`${styles.modal} ${
-        !whenModelIsNotOpen && "slideIn"
-      } container-fluid `}
+        !whenModelIsNotOpen && "slideFromLeft"
+      } container-fluid  `}
     >
       <p className={`${styles.textGradient} center row  `}>
         Welcome to WingsSide, An Online Web3 Market Platform

@@ -24,7 +24,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`${styles.appBarMain} container-fluid flex-start bg-dark align-items-center px-4`}
+      className={`${styles.appBarMain}  flex-start bg-dark align-items-center px-4`}
     >
       <div className="row center">
         <BsFillDiagram3Fill className={styles.shopIcon}></BsFillDiagram3Fill>

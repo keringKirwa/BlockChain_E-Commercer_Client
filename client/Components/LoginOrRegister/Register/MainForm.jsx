@@ -83,8 +83,8 @@ export const MainForm = ({
       <input
         autoComplete="off"
         name="password"
-        type="string"
-        placeholder="Password,eg johndoe@gmail.com"
+        type="password"
+        placeholder="Password,eg john34@JD"
         value={values.password}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -100,8 +100,8 @@ export const MainForm = ({
       <input
         autoComplete="off"
         name="confirmPassword"
-        type="string"
-        placeholder="Password,eg johndoe@gmail.com"
+        type="password"
+        placeholder="confirmPassword"
         value={values.confirmPassword}
         onChange={handleChange}
         onBlur={handleBlur}

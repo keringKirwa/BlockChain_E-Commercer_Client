@@ -14,45 +14,47 @@ export const HomePage = () => {
     router.push("/shops");
   };
   return (
-    <div className={`${styles.homeComponent}`}>
-      <div className={`${styles.blockImages}`}>
+    <div
+      className={`container-fluid align-items-center ${styles.mainContainer}`}
+    >
+      <div className={`${styles.blockImages} row `}>
         {" "}
         <Image
           src={image}
           alt="block image"
-          className={`${styles.block} slideFromLeft`}
+          className={`${styles.block} slideFromLeft image-responsive col-6`}
         ></Image>
         <Image
           src={image}
           alt="block image"
-          className={`${styles.block} slideFromRight`}
+          className={`${styles.block} slideFromRight image-responsive col-6`}
         ></Image>
       </div>
 
-      <div className={`${styles.textSection} `}>
+      <div className={`${styles.textSection} row `}>
         <div
-          className={`${styles.welcome} container-fluid center text-center pt-5 `}
+          className={`${styles.welcome} container center text-center pt-5 col-12 `}
         >
           The Best
         </div>
-        <div
-          className={`${styles.welcome} container-fluid center text-center `}
-        >
+        <div className={`${styles.welcome} center text-center col-12`}>
           Online Marketing Platform
         </div>
-        <p className={`${styles.simpleText} center text-center`}>
+        <p className={`${styles.simpleText} center text-center col-12`}>
           Buy And sell products using dApp.Smart Contracts For Smart
           Transactions.
         </p>
       </div>
 
-      <button
-        className={`${styles.buttonHome}  text-center`}
-        type="button"
-        onClick={handleClick}
-      >
-        Get Started <BsArrowRightSquare className="ml-2"></BsArrowRightSquare>
-      </button>
+      <div className={`${styles.buttonContainer} row center`}>
+        <button
+          className={`${styles.buttonHome}  text-center row center`}
+          type="button"
+          onClick={handleClick}
+        >
+          Get Started <BsArrowRightSquare className="ml-2"></BsArrowRightSquare>
+        </button>
+      </div>
     </div>
   );
 };

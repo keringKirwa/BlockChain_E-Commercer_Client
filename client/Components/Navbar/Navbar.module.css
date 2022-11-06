@@ -1,15 +1,13 @@
 .appBarMain {
     display: flex;
-    justify-content: space-between !important;
-   
-    
-
+    justify-content: space-between !important;  
 }
 .shopIcon{
     width: 100px;
     height: 40px;
     color: beige;
     margin: 5px;
+   
    
 }
 .button {
@@ -37,7 +35,7 @@ background-image: linear-gradient(60deg,#f96060, #5e78cc );
     
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width:400px) {
     .appName {
         margin: 4px;
         font-size:30px ;
