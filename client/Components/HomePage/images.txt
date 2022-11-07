@@ -1,0 +1,40 @@
+{images.map((imageURL, key) => (
+                        <div
+                          className={
+                            key == 0 ? "carousel-item active" : "carousel-item"
+                          }
+                        >
+                          <img
+                            className={`${styles.carouselOneImage} w-100`}
+                            src={imageURL}
+                            alt="First slide"
+                          />
+                        </div>
+                      ))}
+
+
+
+
+
+
+
+
+
+
+
+
+ <div className="carousel-inner ">
+                      {images.map((imageURL, key) => (
+                        <div
+                          className={
+                            key == 0 ? "carousel-item active" : "carousel-item"
+                          }
+                        >
+                          <img
+                            className={`${styles.carouselOneImage} w-100`}
+                            src={imageURL}
+                            alt="First slide"
+                          />
+                        </div>
+                      ))}
+                    </div>

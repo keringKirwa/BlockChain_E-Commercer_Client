@@ -1,0 +1,120 @@
+
+.allShopsContainer{
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5px;
+   align-items: center;
+ 
+  
+    
+}
+.lowlyRatedShopsContainer {
+    width: 100% !important;
+    padding: 100px;
+    height: fit-content;
+    margin-top: 40px;
+    padding: 5px;
+    
+   
+    
+}
+
+.handleMarginProblem{
+    padding: 10px;
+    margin-bottom: 70px;
+    margin-bottom: 45px;
+   
+}
+.shop{
+   min-width: 90%;
+   height: 100%;
+   border: 1px solid gray;
+    border-radius: 10px;
+    position: relative;
+
+}
+.shopDetails{
+  
+    margin-top: 100px;
+   
+    
+    
+}
+.shopImageContainer{
+    position: absolute;
+    top: -10%;
+    right: 36%;
+    border-radius: 50%;
+    z-index: 2;
+    
+    
+}
+
+.shopImage{
+    border-radius: 50%;
+}
+
+.shopName{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.shopDescription{
+    font-size: 17px;
+    font-style: italic;
+}
+
+.visitButton{
+    background-color: black;
+    font-size: 20px;
+    height: 50px;
+    width: 60%;
+    color: white;
+    border-radius: 7px;
+    border: 1px solid red;
+}
+
+.automatedScrollImage{
+    width: 100%;
+    height: 200px;
+    display: block;
+}
+
+#maduka{
+    color: yellow;
+    font-size: 20px !important;
+    
+}
+
+.carouselOneImage{
+width: 200px;
+height: 200px;
+object-fit: contain;
+border-radius: 10px;
+margin-bottom: 20px;
+
+}
+
+@media screen and (max-width:450px) {
+
+
+.shopName{
+    font-size: 27px;
+    font-weight: bold;
+}
+.shopImageContainer{
+    position: absolute;
+        top: -10%;
+        right: 30%;
+        border-radius: 50%;
+        z-index: 2;
+        overflow-x: hidden;
+
+}
+
+
+}
+
+

@@ -2,13 +2,13 @@
     background-color: #dcdcdc;
     position: relative;
     width: 100%;
-    height: 500px;
+    height: auto;
     border-radius: 20px;
     margin-top: 10px;
+    margin-bottom: 50px;
 }
 .shopSection{
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 100px;
@@ -33,8 +33,9 @@
 }
 .superText{
         
-       color: white;
+      color: rgb(117, 113, 113);
        font-size: 5em;
+       font-weight: bold;
        text-transform: uppercase;
        max-width: 100%;
        z-index: 1;
@@ -46,7 +47,7 @@
     font-weight: bold;
     font-size: 20px;
     margin-bottom: 20px;
-    border: 1px solid gray;
+   
     border-radius: 6px;
     padding: 10px;
     text-transform: uppercase;
@@ -56,9 +57,10 @@
 .Button{
     width: 100% !important;
     height: 50px;
-    background-color: red;
+    background-color:red;
     border-radius: 10px;
     color: white;
+    
 }
 .ButtonDiv{
    
@@ -82,10 +84,16 @@
     
    }
    .shopName{
+   
     font-size: 60px;
+    position: absolute;
+    top: 0;
+   
    }
    .superText{
     font-size: 7em;
+    position: absolute;
+    top: 30%;
     
    }
    .shopSection{
@@ -100,16 +108,13 @@
    .rating,
    .followers {
        
-       font-size: 30px;
-       margin-bottom: 30px;
-       border: 1px solid gray;
-       border-radius: 10px;
-       padding: 5px;
-       text-transform: uppercase;
-       gap: 4px;
-       width: 50% !important;
-       position: relative;
-       right: -150px;
+     all: initial;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-bottom: 5%;
+     font-size: 30px;
+     font-weight: bold;
 
    }
    
@@ -118,8 +123,8 @@
 
    @media screen and (max-width: 500px) {
     .shopName{
-        margin-left: 60px;
-
+        position: relative;
+        left: 30px;
     }
     .superText{
         font-size: 50px;
@@ -130,13 +135,32 @@
         font-weight: bold;
         font-size: 15px;
         
-        border: 1px solid gray;
+      
         border-radius: 6px;
         
         text-transform: uppercase;
         gap: 4px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
     
-    }    
+    } 
+    .rating{
+        position: absolute;
+        right: 0;
+        bottom: 20%;
+    }
+    .followers{
+        position: absolute;
+            bottom: 7%;
+            right: 0;
+    }
+    
+    .Image{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }   
        
    }
 
