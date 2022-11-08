@@ -9,7 +9,13 @@ export const RatedShop = () => {
       <div className={`${styles.sShop} row`}>
         <div className={`${styles.shopSection} col-6 `}>
           <div className={`${styles.shopName} row d-sm-3`}>Shopify.com</div>
-          <div className={`${styles.superText} row `}>T~SHIRTS</div>{" "}
+          <p className={`${styles.dealersIn} gradientColor`}>Dealers in:</p>
+          <div
+            className={`${styles.superText} row gradientColor d-none d-xl-block `}
+          >
+            Computers
+          </div>{" "}
+          <div className={`${styles.superText} row d-xl-none`}>Computers</div>{" "}
           <button className={styles.Button}>
             <div className={styles.ButtonDiv}>
               {" "}

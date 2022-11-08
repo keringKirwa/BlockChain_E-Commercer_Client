@@ -33,7 +33,7 @@
 }
 .superText{
         
-      color: rgb(117, 113, 113);
+       color: white;
        font-size: 5em;
        font-weight: bold;
        text-transform: uppercase;
@@ -57,21 +57,42 @@
 .Button{
     width: 100% !important;
     height: 50px;
-    background-color:red;
+   
     border-radius: 10px;
     color: white;
+    position: relative;
+    bottom: 17%;
+    color: black;
+    background-color: beige;
+
     
+    
+}
+.Button:hover{
+transition-duration: 1s;
+background-color: black;
+color: white;
+transition-duration: 1s ease;
+
 }
 .ButtonDiv{
    
     display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
+  position: relative;
 
 }
 .ButtonDiv p{
    font-size: 16px;
+   margin:5px 0px;
 }
+  .dealersIn {
+      position: absolute;
+      top: 30%;
+      font-size: 30px;
+  }
  .arrow{
     height: 100%;
 }
@@ -83,6 +104,12 @@
     height:250px;
     
    }
+
+   .dealersIn{
+    
+    top: 25%;
+ font-size: 40px;
+  }
    .shopName{
    
     font-size: 60px;
@@ -160,8 +187,34 @@
         position: absolute;
         right: 0;
         top: 0;
+        width: 150px;
+        height: 150px;
     }   
+
+  
+
+    .shopName{
+        left: 0;
+    }
+    
        
+   }
+
+   @media screen and (max-width: 400px){
+    .ButtonDiv p{
+            font-size: 14px;
+    }
+    .superText{
+        font-size: 40px;
+    }
+    .shopName{
+        font-size: 35px;
+        left: 15%;
+    }
+
+    .dealersIn{
+        left: 10%;
+
    }
 
 

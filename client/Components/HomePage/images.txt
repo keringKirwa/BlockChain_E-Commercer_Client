@@ -1,34 +1,18 @@
-{images.map((imageURL, key) => (
-                        <div
-                          className={
-                            key == 0 ? "carousel-item active" : "carousel-item"
-                          }
-                        >
-                          <img
-                            className={`${styles.carouselOneImage} w-100`}
-                            src={imageURL}
-                            alt="First slide"
-                          />
-                        </div>
-                      ))}
-
-
-
-
-
-
-
-
-
-
-
-
- <div className="carousel-inner ">
+<div
+                    id="carouselExampleInterval"
+                    class="carousel slide"
+                    data-bs-ride="carousel"
+                  >
+                    <div
+                      className={`${styles.lowlyRatedShopsContainer} carousel-inner`}
+                    >
                       {images.map((imageURL, key) => (
                         <div
                           className={
-                            key == 0 ? "carousel-item active" : "carousel-item"
+                            key == 0 ? "active carousel-item" : "carousel-item"
                           }
+                          data-bs-interval="1000"
+                          key={key}
                         >
                           <img
                             className={`${styles.carouselOneImage} w-100`}
@@ -38,3 +22,4 @@
                         </div>
                       ))}
                     </div>
+                  </div>

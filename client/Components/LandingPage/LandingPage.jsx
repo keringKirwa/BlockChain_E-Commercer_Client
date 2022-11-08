@@ -5,7 +5,6 @@ import image from "../../public/block.svg";
 import { BsArrowRightSquare } from "react-icons/bs";
 
 import { useRouter } from "next/router";
-import Link from "next/link";
 
 export const LandingPage = () => {
   const router = useRouter();
