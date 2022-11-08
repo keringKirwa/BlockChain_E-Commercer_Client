@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-
 import { Formik, Form, Field } from "formik";
-import { BiLogInCircle } from "react-icons/bi";
 import { FaTelegramPlane } from "react-icons/fa";
-import { LoginSchema } from "./LoginSchema";
+import { createShopSchema } from "../CreateShop/createShopSchema.js";
+import { FadeLoader } from "react-spinners";
 import toast from "react-hot-toast";
+import styles from "./UpdateShopDetails.module.css";
+import { Spinner } from "../../Spinner/Spinner.jsx";
 
-import styles from "./LoginPage.module.css";
-import { Spinner } from "../../Spinner/Spinner";
-
-export const LoginPage = () => {
+export const UpdateHopDetails = () => {
   const [loading, setLoading] = useState(false);
   return (
     <div className="pt-5">
       <Formik
         initialValues={{
           emailAddress: "",
-          password: "",
+          shopPassword: "",
+          shopName: "",
+          shopIconURL: "",
         }}
-        validationSchema={LoginSchema}
+        validationSchema={createShopSchema}
         onSubmit={(values, { resetForm, setSubmitting }) => {
           setLoading((prevIsLoading) => !prevIsLoading);
           setTimeout(() => {
@@ -45,16 +45,55 @@ export const LoginPage = () => {
           values,
         }) => (
           <div className="container-fluid d-flex flex-column align-items-center  ">
-            {loading && <Spinner loading={loading}></Spinner>}
+            {loading && <Spinner loading={loading} s></Spinner>}
+
             <div className={`text-info container-fluid `}>
               <form
                 onSubmit={handleSubmit}
                 className={`${styles.formCSS} d-flex justify-content-center align-items-center flex-column `}
               >
-                <span className={styles.loginText}>
-                  Login
-                  <BiLogInCircle className={styles.unlockIcon}></BiLogInCircle>
-                </span>
+                <span className={styles.loginText}>Create Shop</span>
+                <input
+                  autoComplete="off"
+                  name="shopName"
+                  type="text"
+                  placeholder="Shop Name,eg KKDEV~SHOP"
+                  value={values.shopName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    touched.shopName && errors.shopName
+                      ? `${styles.error} ${styles.inputElement} `
+                      : touched.shopName && !errors.shopName
+                      ? `${styles.success} ${styles.inputElement}`
+                      : `${styles.inputElement}`
+                  }
+                />
+                <p className="text-danger text-center">
+                  {errors.shopName && touched.shopName && errors.shopName}
+                </p>
+
+                <input
+                  autoComplete="off"
+                  name="shopIconURL"
+                  type="file"
+                  placeholder="Choose Your Shop Image"
+                  value={values.shopIconURL}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    touched.shopIconURL && errors.shopIconURL
+                      ? `${styles.error} ${styles.inputElement} `
+                      : touched.shopIconURL && !errors.shopIconURL
+                      ? `${styles.success} ${styles.inputElement}`
+                      : `${styles.inputElement}`
+                  }
+                />
+                <p className="text-danger text-center">
+                  {errors.shopIconURL &&
+                    touched.shopIconURL &&
+                    errors.shopIconURL}
+                </p>
                 <input
                   autoComplete="off"
                   name="emailAddress"
@@ -79,9 +118,9 @@ export const LoginPage = () => {
 
                 <input
                   autoComplete="off"
-                  name="password"
+                  name="shopPassword"
                   type="password"
-                  placeholder="Password,eg john34@JD"
+                  placeholder="shopPassword,eg john34@JD"
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -93,8 +132,10 @@ export const LoginPage = () => {
                       : `${styles.inputElement}`
                   }
                 />
-                <p className="text-danger">
-                  {errors.password && touched.password && errors.password}
+                <p className="text-danger text-center">
+                  {errors.shopPassword &&
+                    touched.shopPassword &&
+                    errors.shopPassword}
                 </p>
 
                 <button

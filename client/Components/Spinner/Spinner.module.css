@@ -1,0 +1,15 @@
+.spinnerContainer {
+    color: rgb(2, 2, 27);
+    z-index: 5;
+    position: absolute;
+    top: 20px;
+
+}
+
+.spinnerRegisterContainer{
+    color: rgb(2, 2, 27);
+        z-index: 5;
+        position: absolute;
+        top: 5px;
+
+}
