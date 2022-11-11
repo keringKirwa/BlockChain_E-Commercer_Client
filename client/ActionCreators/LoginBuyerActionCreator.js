@@ -2,20 +2,18 @@ import toast from "react-hot-toast";
 import { ethers } from "ethers";
 import { contractABI, contractAddress } from "../utils/constants";
 import { createEthereumContract } from "../utils/createEthContract";
-export const loginBuyer = async ({
-  values,
-  setLoading,
-  ethereum,
-  router,
-  resetForm,
-}) => {
+export const loginBuyerAction = async (loginDetails) => {
+  const { values, setLoading, ethereum, router, resetForm } = loginDetails;
   const { emailAddress, buyerEthAddress } = values;
+
   try {
     alert(emailAddress);
     const transactionsContract = await createEthereumContract(ethereum);
-    const [password, emailAddress, customerName] =
-      await transactionsContract.loginBuyer(buyerEthAddress, emailAddress);
-    console.log("the return of the login are:::::", emailAddress, customerName);
+    const result = await transactionsContract.loginBuyer(
+      buyerEthAddress,
+      emailAddress
+    );
+    console.log("the return of the login are:::::", result);
 
     setLoading((prevIsLoading) => !prevIsLoading);
     resetForm();

@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 import styles from "./LoginPage.module.css";
 import { Spinner } from "../../Spinner/Spinner";
-import { loginBuyer } from "../../../ActionCreators/LoginBuyerAction";
+import { loginBuyerAction } from "../../../ActionCreators/LoginBuyerActionCreator.js";
 
 export const LoginPage = () => {
   const router = useRouter();
@@ -25,8 +25,8 @@ export const LoginPage = () => {
         onSubmit={(values, { resetForm, setSubmitting }) => {
           /*   alert(JSON.stringify(values, null, 2)); */
           setLoading((prevIsLoading) => !prevIsLoading);
-          
-          loginBuyer({
+
+          loginBuyerAction({
             values,
             setLoading,
             ethereum: window.ethereum,
