@@ -1,19 +1,10 @@
 import * as Yup from "yup";
 
-/*  address sellerEthereumAddress;
-        bytes32 shopPassword;
-        uint256 shopId;
-        string shopName;
-        string iconURL;
-        uint256[] userproductsId; dynamic array */
-
 export const createShopSchema = Yup.object().shape({
-  emailAddress: Yup.string()
-    .matches(
-      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{3,4}$/i,
-      "Invalid Email Address!"
-    )
-    .required("Email is required !"),
+  buyerEthAddress: Yup.string()
+    .required("Buyer's Ethereum address is required")
+    .min(42, "Eth Address Not Valid")
+    .max(42, "Eth Address Too Long "),
 
   shopName: Yup.string("Shop name must be a string alone")
     .min(5, "Shop Name Too Short")
@@ -26,5 +17,5 @@ export const createShopSchema = Yup.object().shape({
       "Must have 8 Characters, One Uppercase, One Lowercase, One Number and One Special Character !"
     )
     .required("shop Password required"),
-  shopIconURL: Yup.string().required("Please Choose an image "),
+  shopProfileImage: Yup.string(),
 });

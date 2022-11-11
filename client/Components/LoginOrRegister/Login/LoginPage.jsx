@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 import { Formik, Form, Field } from "formik";
 import { BiLogInCircle } from "react-icons/bi";
@@ -8,27 +9,32 @@ import toast from "react-hot-toast";
 
 import styles from "./LoginPage.module.css";
 import { Spinner } from "../../Spinner/Spinner";
+import { loginBuyer } from "../../../ActionCreators/LoginBuyerAction";
 
 export const LoginPage = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   return (
     <div className="pt-5">
       <Formik
         initialValues={{
           emailAddress: "",
-          password: "",
+          buyerEthAddress: "",
         }}
         validationSchema={LoginSchema}
         onSubmit={(values, { resetForm, setSubmitting }) => {
+          /*   alert(JSON.stringify(values, null, 2)); */
           setLoading((prevIsLoading) => !prevIsLoading);
-          setTimeout(() => {
-            /* alert(JSON.stringify(values, null, 2)); */
+          
+          loginBuyer({
+            values,
+            setLoading,
+            ethereum: window.ethereum,
+            router,
+            resetForm,
+          });
 
-            setSubmitting(false);
-
-            setLoading((prevIsLoading) => !prevIsLoading);
-            toast.success("Shop Detail Updated successfully");
-          }, 4000);
+          setSubmitting(false);
         }}
       >
         {({
@@ -79,22 +85,24 @@ export const LoginPage = () => {
 
                 <input
                   autoComplete="off"
-                  name="password"
-                  type="password"
-                  placeholder="Password,eg john34@JD"
-                  value={values.password}
+                  name="buyerEthAddress"
+                  type="string"
+                  placeholder="Your 42byte Eth Address from Metamask Wallet"
+                  value={values.buyerEthAddress}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    touched.password && errors.password
+                    touched.buyerEthAddress && errors.buyerEthAddress
                       ? `${styles.error} ${styles.inputElement} `
-                      : touched.password && !errors.password
+                      : touched.buyerEthAddress && !errors.buyerEthAddress
                       ? `${styles.success} ${styles.inputElement}`
                       : `${styles.inputElement}`
                   }
                 />
                 <p className="text-danger">
-                  {errors.password && touched.password && errors.password}
+                  {errors.buyerEthAddress &&
+                    touched.buyerEthAddress &&
+                    errors.buyerEthAddress}
                 </p>
 
                 <button

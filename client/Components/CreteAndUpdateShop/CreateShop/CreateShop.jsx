@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import { FaTelegramPlane } from "react-icons/fa";
 import { createShopSchema } from "./createShopSchema";
@@ -6,29 +6,30 @@ import toast from "react-hot-toast";
 
 import styles from "./CreateShop.module.css";
 import { Spinner } from "../../Spinner/Spinner";
+import { uploadImageToCloudinary } from "../../../utils/uploadImagToCloudinary";
+import { createShopAction } from "../../../ActionCreators/createShopAction";
 
 export const CreateShop = () => {
   const [loading, setLoading] = useState(false);
+  const [shopIconURL, setShopIconURL] = useState("");
+  const [shopImage, setShopImage] = useState("");
   return (
     <div className="pt-5">
       <Formik
         initialValues={{
-          emailAddress: "",
+          buyerEthAddress: "",
           shopPassword: "",
           shopName: "",
-          shopIconURL: "",
+          shopProfileImage: "",
         }}
         validationSchema={createShopSchema}
         onSubmit={(values, { resetForm, setSubmitting }) => {
           setLoading((prevIsLoading) => !prevIsLoading);
-          setTimeout(() => {
-            /* alert(JSON.stringify(values, null, 2)); */
-
-            setSubmitting(false);
-
-            setLoading((prevIsLoading) => !prevIsLoading);
-            toast.success("Shop created successfully");
-          }, 4000);
+          uploadImageToCloudinary(shopImage, setShopIconURL);
+          createShopAction({values, shopIconURL, setLoading, ethereum:window.ethereum});
+          setSubmitting(false);
+          
+          
         }}
       >
         {({
@@ -54,6 +55,27 @@ export const CreateShop = () => {
                 <span className={styles.loginText}>Create Shop</span>
                 <input
                   autoComplete="off"
+                  name="buyerEthAddress"
+                  type="string"
+                  placeholder="Seller's 42byte Eth Address from Metamask Wallet"
+                  value={values.buyerEthAddress}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    touched.buyerEthAddress && errors.buyerEthAddress
+                      ? `${styles.error} ${styles.inputElement} `
+                      : touched.buyerEthAddress && !errors.buyerEthAddress
+                      ? `${styles.success} ${styles.inputElement}`
+                      : `${styles.inputElement}`
+                  }
+                />
+                <p className="text-danger">
+                  {errors.buyerEthAddress &&
+                    touched.buyerEthAddress &&
+                    errors.buyerEthAddress}
+                </p>
+                <input
+                  autoComplete="off"
                   name="shopName"
                   type="text"
                   placeholder="Shop Name,eg KKDEV~SHOP"
@@ -74,45 +96,25 @@ export const CreateShop = () => {
 
                 <input
                   autoComplete="off"
-                  name="shopIconURL"
+                  name="shopProfileImage"
                   type="file"
-                  placeholder="Choose Your Shop Image"
+                  required
+                  placeholder="Choose Your Shop Profile Image"
                   value={values.shopIconURL}
-                  onChange={handleChange}
+                  onChange={(e) => setShopImage(e.target.files[0])}
                   onBlur={handleBlur}
                   className={
-                    touched.shopIconURL && errors.shopIconURL
+                    touched.shopProfileImage && errors.shopProfileImage
                       ? `${styles.error} ${styles.inputElement} `
-                      : touched.shopIconURL && !errors.shopIconURL
+                      : touched.shopProfileImage && !errors.shopProfileImage
                       ? `${styles.success} ${styles.inputElement}`
                       : `${styles.inputElement}`
                   }
                 />
                 <p className="text-danger text-center">
-                  {errors.shopIconURL &&
-                    touched.shopIconURL &&
-                    errors.shopIconURL}
-                </p>
-                <input
-                  autoComplete="off"
-                  name="emailAddress"
-                  type="email"
-                  placeholder=" eg johndoe@gmail.com"
-                  value={values.emailAddress}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    touched.emailAddress && errors.emailAddress
-                      ? `${styles.error} ${styles.inputElement} `
-                      : touched.emailAddress && !errors.emailAddress
-                      ? `${styles.success} ${styles.inputElement}`
-                      : `${styles.inputElement}`
-                  }
-                />
-                <p className="text-danger">
-                  {errors.emailAddress &&
-                    touched.emailAddress &&
-                    errors.emailAddress}
+                  {errors.shopProfileImage &&
+                    touched.shopProfileImage &&
+                    errors.shopProfileImage}
                 </p>
 
                 <input

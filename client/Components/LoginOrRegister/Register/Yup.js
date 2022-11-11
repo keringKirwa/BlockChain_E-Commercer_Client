@@ -3,8 +3,8 @@ import * as Yup from "yup";
 export const RegisterSchema = Yup.object().shape({
   buyerEthAddress: Yup.string()
     .required("Buyer's Ethereum address is required")
-    .min(5, "Eth Address Not Valid")
-    .max(5, "Eth Address Too Long "),
+    .min(42, "Eth Address Not Valid")
+    .max(42, "Eth Address Too Long "),
   firstName: Yup.string()
     .min(3, "firstName too Short!")
     .max(10, "firstName Too Long!")

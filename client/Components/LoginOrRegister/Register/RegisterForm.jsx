@@ -5,14 +5,19 @@ import { AiTwotoneUnlock } from "react-icons/ai";
 import { MdPersonAddAlt1 } from "react-icons/md";
 
 import styles from "./RegisterForm.module.css";
+import { registerBuyerAction } from "../../../ActionCreators/registerBuyerActionCreator";
 
 import { RegisterSchema } from "./Yup.js";
 import { MainForm } from "./MainForm";
-import toast from "react-hot-toast";
+
 import { Spinner } from "../../Spinner/Spinner.jsx";
 
 export const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
+  const [imageURL, setImageURL] = useState("");
+
+  const [currentAccount, setCurrentAccount] = useState(false);
+
   return (
     <Formik
       initialValues={{
@@ -24,17 +29,16 @@ export const RegisterForm = () => {
         confirmPassword: "",
       }}
       validationSchema={RegisterSchema}
-      onSubmit={(values, { resetForm, setSubmitting }) => {
-        setLoading((prevIsLoading) => !prevIsLoading);
-        setTimeout(() => {
-          /* alert(JSON.stringify(values, null, 2)); */
+      onSubmit={
+        (values, { resetForm, setSubmitting }) => {
+          setLoading((prevIsLoading) => !prevIsLoading);
+
+          registerBuyerAction(values, setLoading, window.ethereum);
 
           setSubmitting(false);
-
-          setLoading((prevIsLoading) => !prevIsLoading);
-          toast.success("Registered Successfully ✔️");
-        }, 4000);
-      }}
+        }
+        
+      }
     >
       {({
         errors,

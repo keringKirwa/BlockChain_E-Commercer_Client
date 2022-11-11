@@ -1,32 +1,33 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import { FaTelegramPlane } from "react-icons/fa";
-import { createShopSchema } from "../CreateShop/createShopSchema.js";
+import { addProductSchema } from "./AddProductSchema";
 import toast from "react-hot-toast";
-import styles from "./UpdateShopDetails.module.css";
-import { Spinner } from "../../Spinner/Spinner.jsx";
 
-export const UpdateHopDetails = () => {
+import styles from "./AddProductToShop.module.css";
+import { Spinner } from "../Spinner/Spinner";
+
+export const AddProductToShop = () => {
   const [loading, setLoading] = useState(false);
   return (
     <div className="pt-5">
       <Formik
         initialValues={{
-          emailAddress: "",
-          shopPassword: "",
-          shopName: "",
-          shopIconURL: "",
+          productName: "",
+          productQuantity: 0,
+          productImageURL: "",
+          productDescription: "",
         }}
-        validationSchema={createShopSchema}
+        validationSchema={addProductSchema}
         onSubmit={(values, { resetForm, setSubmitting }) => {
           setLoading((prevIsLoading) => !prevIsLoading);
           setTimeout(() => {
-            /* alert(JSON.stringify(values, null, 2)); */
+            /* Capture the product object , then then upload the image to the Claudinary , and wait till yiu get back the URL of that image .*/
 
             setSubmitting(false);
 
             setLoading((prevIsLoading) => !prevIsLoading);
-            toast.success("Shop Detail Updated successfully");
+            toast.success("Product Added successfully");
           }, 4000);
         }}
       >
@@ -44,97 +45,105 @@ export const UpdateHopDetails = () => {
           values,
         }) => (
           <div className="container-fluid d-flex flex-column align-items-center  ">
-            {loading && <Spinner loading={loading} s></Spinner>}
-
+            {loading && <Spinner loading={loading} styles={styles}></Spinner>}
             <div className={`text-info container-fluid `}>
               <form
                 onSubmit={handleSubmit}
                 className={`${styles.formCSS} d-flex justify-content-center align-items-center flex-column `}
               >
-                <span className={styles.loginText}>Create Shop</span>
+                <span className={styles.loginText}>
+                  Add Product To Your Shop
+                </span>
+
+                {/* productName: "",
+          productQuantity: 0,
+          productImageURL: "",
+          productDescription: "", */}
                 <input
                   autoComplete="off"
-                  name="shopName"
+                  name="productName"
                   type="text"
-                  placeholder="Shop Name,eg KKDEV~SHOP"
-                  value={values.shopName}
+                  placeholder="Product Name, e.g, HP-LAPTOP"
+                  value={values.productName}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    touched.shopName && errors.shopName
+                    touched.productName && errors.productName
                       ? `${styles.error} ${styles.inputElement} `
-                      : touched.shopName && !errors.shopName
+                      : touched.productName && !errors.productName
                       ? `${styles.success} ${styles.inputElement}`
                       : `${styles.inputElement}`
                   }
                 />
                 <p className="text-danger text-center">
-                  {errors.shopName && touched.shopName && errors.shopName}
+                  {errors.productName &&
+                    touched.productName &&
+                    errors.productName}
                 </p>
 
                 <input
                   autoComplete="off"
-                  name="shopIconURL"
-                  type="file"
+                  name="productQuantity"
+                  type="number"
                   placeholder="Choose Your Shop Image"
-                  value={values.shopIconURL}
+                  value={values.productQuantity}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    touched.shopIconURL && errors.shopIconURL
+                    touched.productQuantity && errors.productQuantity
                       ? `${styles.error} ${styles.inputElement} `
-                      : touched.shopIconURL && !errors.shopIconURL
+                      : touched.productQuantity && !errors.productQuantity
                       ? `${styles.success} ${styles.inputElement}`
                       : `${styles.inputElement}`
                   }
                 />
                 <p className="text-danger text-center">
-                  {errors.shopIconURL &&
-                    touched.shopIconURL &&
-                    errors.shopIconURL}
+                  {errors.productQuantity &&
+                    touched.productQuantity &&
+                    errors.productQuantity}
                 </p>
                 <input
                   autoComplete="off"
-                  name="emailAddress"
-                  type="email"
-                  placeholder=" eg johndoe@gmail.com"
-                  value={values.emailAddress}
+                  name="productImageURL"
+                  type="file"
+                  placeholder="Choose file... "
+                  value={values.productImageURL}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    touched.emailAddress && errors.emailAddress
+                    touched.productImageURL && errors.productImageURL
                       ? `${styles.error} ${styles.inputElement} `
-                      : touched.emailAddress && !errors.emailAddress
+                      : touched.productImageURL && !errors.productImageURL
                       ? `${styles.success} ${styles.inputElement}`
                       : `${styles.inputElement}`
                   }
                 />
                 <p className="text-danger">
-                  {errors.emailAddress &&
-                    touched.emailAddress &&
-                    errors.emailAddress}
+                  {errors.productImageURL &&
+                    touched.productImageURL &&
+                    errors.productImageURL}
                 </p>
 
                 <input
                   autoComplete="off"
-                  name="shopPassword"
-                  type="password"
-                  placeholder="shopPassword,eg john34@JD"
-                  value={values.password}
+                  name="productDescription"
+                  type="text"
+                  placeholder="product Description"
+                  value={values.productDescription}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
                     touched.password && errors.password
                       ? `${styles.error} ${styles.inputElement} `
-                      : touched.password && !errors.password
+                      : touched.productDescription && !errors.productDescription
                       ? `${styles.success} ${styles.inputElement}`
                       : `${styles.inputElement}`
                   }
                 />
                 <p className="text-danger text-center">
-                  {errors.shopPassword &&
-                    touched.shopPassword &&
-                    errors.shopPassword}
+                  {errors.productDescription &&
+                    touched.productDescription &&
+                    errors.productDescription}
                 </p>
 
                 <button
@@ -157,7 +166,7 @@ export const UpdateHopDetails = () => {
                       <>Submitting....</>
                     ) : (
                       <>
-                        SUBMIT <FaTelegramPlane className="" />
+                        Add Product <FaTelegramPlane className="" />
                       </>
                     )}
                   </p>

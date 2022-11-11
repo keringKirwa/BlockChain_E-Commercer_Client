@@ -1,6 +1,9 @@
 import Head from "next/head";
+
 import { LandingPage } from "../Components/LandingPage/LandingPage";
 import styles from "../styles/Home.module.css";
+
+
 export default function Home() {
   return (
     <div className="center">
@@ -11,6 +14,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        
         <LandingPage></LandingPage>
       </main>
     </div>

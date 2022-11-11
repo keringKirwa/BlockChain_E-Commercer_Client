@@ -8,10 +8,8 @@ export const LoginSchema = Yup.object().shape({
     )
     .required("Email is required !"),
 
-  password: Yup.string()
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-      "Must have 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-    )
-    .required("password required"),
+  buyerEthAddress: Yup.string()
+    .required("Ethereum address is required")
+    .min(42, "Eth Address Not Valid")
+    .max(42, "Eth Address Invalid "),
 });
