@@ -4,14 +4,16 @@ import { contractABI, contractAddress } from "../utils/constants";
 import { createEthereumContract } from "../utils/createEthContract";
 import { signin } from "../store/reducers/authSlice";
 export const loginBuyerAction = async (loginDetails) => {
+  /* string calldata email, string calldata password */
   const { values, setLoading, ethereum, router, resetForm, dispatch } =
     loginDetails;
-  const { emailAddress, buyerEthAddress } = values;
+  const { emailAddress, password } = values;
 
   try {
+    /* TODO: capture the ethereum address too  an populate it to the redux store . */
     const transactionsContract = await createEthereumContract(ethereum);
-    const [userPassword, loggedInUserEmail, loggedInUserName] =
-      await transactionsContract.loginBuyer(buyerEthAddress, emailAddress);
+    const [loggedInUserEmail, loggedInUserName] =
+      await transactionsContract.loginBuyer(emailAddress, password);
 
     dispatch(signin({ loggedInUserEmail, loggedInUserName }));
 

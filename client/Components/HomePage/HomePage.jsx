@@ -1,10 +1,14 @@
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 import { RatedShop } from "./BestRatedShopBanner/RatedShop";
 import Carousel from "react-bootstrap/Carousel";
+
+import { HiPlus } from "react-icons/hi";
 const list = [1, 2, 3, 4, 5, 6];
 
 import styles from "./HomePage.module.css";
+import { useSelector } from "react-redux";
 
 const reviews = [
   {
@@ -98,6 +102,7 @@ const reviews = [
 ];
 
 export const HomePage = () => {
+  const { userName, userEmail } = useSelector((state) => state.user);
   return (
     <div className="container-fluid ">
       <RatedShop />
@@ -156,6 +161,16 @@ export const HomePage = () => {
           </div>
         ))}
       </div>
+      {userName && (
+        <Link href="/shop/create-shop" className={styles.link}>
+          <div
+            className={`center pt-2 mb-4 imagesSlidingContainer ${styles.FAB} `}
+          >
+            {" "}
+            <HiPlus></HiPlus>
+          </div>
+        </Link>
+      )}
     </div>
   );
 };

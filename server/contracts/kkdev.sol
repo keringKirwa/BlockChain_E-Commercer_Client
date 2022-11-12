@@ -3,8 +3,6 @@ pragma solidity ^0.8.9;
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-/* Address :::: 0x40A28b9F3fAf97B0Ef0C02a8c42C01061Bf55D27 */
-
 contract KKDEV {
     address public contractOwner;
 
@@ -32,6 +30,7 @@ contract KKDEV {
         string shopName;
         string iconURL;
         uint256[] userproductsId; /*A dynamic arrray, initially initialized to nothing , that is an empty array. */
+        string[] productsURL; /* The first image of the product is the one we will populate to the shop. */
     }
 
     struct Product {
@@ -39,13 +38,14 @@ contract KKDEV {
         string productName;
         uint256 productQuantity;
         string productDescription;
-        string imageURL;
+        uint256 productPrice;
+        string[] images; /* a product can have multiple images. */
     }
     struct Customer {
         address customerAddress;
         string emailAddress;
         string customerName;
-        string password;
+        bytes32 password;
     }
 
     struct OrderDetails {
@@ -66,7 +66,8 @@ contract KKDEV {
 
     mapping(uint256 => ItemBought[]) public orderIdtoProductsMap;
 
-    mapping(address => Shop) sellerShopDetails;
+    mapping(address => Shop) sellerShopDetails; /* @shop having product URLs */
+    address[] addressesOfShopsAvailable;
     mapping(address => bool) buyerHasShop;
     mapping(address => mapping(uint256 => Product)) internal productTable; /* the address here is the foreign key of the table  */
     mapping(address => Customer) userAddressToAccountDetailsMapping;
@@ -81,38 +82,43 @@ contract KKDEV {
         string memory customerName,
         string memory password
     ) public returns (bool) {
+        bytes32 hashedPassword = hashPassword(password);
         Customer memory newCust = Customer({
             customerAddress: custAccountAddress,
             emailAddress: emailAddress,
             customerName: customerName,
-            password: password
+            password: hashedPassword
         });
         userAddressToAccountDetailsMapping[custAccountAddress] = newCust;
 
         return true;
     }
 
-    function loginBuyer(address custAccountAddress, string memory email)
+    function loginBuyer(string calldata email, string calldata password)
         external
         view
-        returns (
-            string memory password,
-            string memory emailAddress,
-            string memory customerName
-        )
+        returns (string memory emailAddress, string memory customerName)
     {
-        Customer memory loggedInCustomer = userAddressToAccountDetailsMapping[
+        address custAccountAddress = msg.sender;
+        Customer memory loggedInBuyer = userAddressToAccountDetailsMapping[
             custAccountAddress
         ];
 
         require(
-            compare(email, loggedInCustomer.emailAddress) == true,
+            compare(email, loggedInBuyer.emailAddress) == true,
             "The email address provided is not correct"
         );
 
-        password = loggedInCustomer.password;
-        emailAddress = loggedInCustomer.emailAddress;
-        customerName = loggedInCustomer.customerName;
+        bool isPasswordCorrect = checkForCorrectPassword(
+            password,
+            loggedInBuyer.password
+        );
+        require(
+            isPasswordCorrect == true,
+            "the passsword provided is not correct."
+        );
+        emailAddress = loggedInBuyer.emailAddress;
+        customerName = loggedInBuyer.customerName;
     }
 
     function deleteBuyer(address buyerAddress)
@@ -167,6 +173,7 @@ contract KKDEV {
         uint256 currentShopId = shopIdCounter.current();
         bytes32 hashedPassword = hashPassword(shopPassword);
         uint256[] memory myProductsIds;
+        string[] memory shopProductsURL;
 
         Shop memory newShop = Shop(
             sellerEthAccountAddress,
@@ -174,10 +181,12 @@ contract KKDEV {
             shopId,
             shopName,
             iconURL,
-            myProductsIds
+            myProductsIds,
+            shopProductsURL
         );
         sellerShopDetails[sellerEthAccountAddress] = newShop;
         buyerHasShop[sellerEthAccountAddress] = true;
+        addressesOfShopsAvailable.push(sellerEthAccountAddress);
         message = "Shop successfully created";
         shopId = currentShopId;
     }
@@ -213,19 +222,19 @@ contract KKDEV {
         shopId = sellersShopDetails.shopId;
     }
 
-    function addProductsToShop(
+    function addProductToShop(
         address userAccAddress,
         string memory productName,
         uint256 productQuantity,
-        string calldata imageURI,
-        string calldata productDesc
+        string calldata productDesc,
+        string calldata imageURL,
+        uint256 productPrice
     ) external returns (uint256 prodId) {
-        /* a user will be adding one product at a time .but now fetching all the user products will happen once. */
         require(
             buyerHasShop[userAccAddress] == true,
             "The buyer has no shop yet"
         );
-
+        string[] memory images; /*TODO: check if the length of this array is 3 when the user wants to add more images to the product, */
         productIdCounter.increment();
         uint256 currentProdId = productIdCounter.current();
 
@@ -234,21 +243,50 @@ contract KKDEV {
             productName,
             productQuantity,
             productDesc,
-            imageURI
+            productPrice,
+            images
         );
-        productTable[userAccAddress][currentProdId] = prod;
-        uint256[] storage idArray = sellerShopDetails[userAccAddress]
-            .userproductsId;
-        idArray.push(currentProdId);
+        productTable[userAccAddress][currentProdId] = prod; /* add product to storage*/
+        Product storage p = productTable[userAccAddress][currentProdId];
+        p.images.push(imageURL);
 
-        /* We add a product to the map (which is actually a table ), then add the id of that product to the array associated with the 
-        user,   this array will help us iterate through the user Poducts . NOTE  that the product in the product is has nothing to do with 
-        MEMORY and therefore , an array can initilaly be set to NULL.  */
+        Shop storage s = sellerShopDetails[userAccAddress];
+        s.userproductsId.push(currentProdId);
+        s.productsURL.push(imageURL);
 
         prodId = currentProdId;
     }
 
-    function getUserProducts(address userAccAddress)
+    function updateProductQuantity(
+        address sellerAddress,
+        uint256 productId,
+        uint256 quantitySold
+    ) external returns (Product memory updatedProduct) {
+        /*  mapping(address => mapping(uint256 => Product)) internal productTable; */
+
+        Product storage p = productTable[sellerAddress][productId];
+
+        p.productQuantity -= quantitySold;
+        updatedProduct = p;
+    }
+
+    function addImageToProduct(uint256 productId, string calldata imageURL)
+        external
+        returns (Product memory updatedProduct)
+    {
+        /*  mapping(address => mapping(uint256 => Product)) internal productTable; */
+
+        require(buyerHasShop[msg.sender] == true, "The buyer has no shop yet");
+        Product storage p = productTable[msg.sender][productId];
+        require(
+            p.images.length <= 3,
+            "maximum number of images for a product reached"
+        );
+        p.images.push(imageURL);
+        updatedProduct = p;
+    }
+
+    function getShopProducts(address userAccAddress)
         public
         view
         returns (Product[] memory)
@@ -260,12 +298,32 @@ contract KKDEV {
         Product[] memory userProducts = new Product[](arrayOfProductIds.length);
 
         for (uint256 i = 0; i < arrayOfProductIds.length; i++) {
-            /* read shop products from  the storage to the memory  */
             userProducts[i] = productTable[userAccAddress][
                 arrayOfProductIds[i]
             ];
         }
         return userProducts;
+    }
+
+    /* ------------------------------------------------------------------------------------------------------------------------------------------ */
+    function getAvailableShops() external view returns (Shop[] memory shops) {
+        address[] memory addressesOfShops = addressesOfShopsAvailable;
+        require(
+            addressesOfShopsAvailable.length > 0,
+            "there are no shops in the market"
+        );
+        console.log(
+            "Address is here ::::::::=====::::",
+            addressesOfShops.length
+        );
+        Shop[] memory shopsAvailableInMarket = new Shop[](
+            addressesOfShops.length
+        );
+        for (uint256 i = 0; i < addressesOfShops.length; i++) {
+            shopsAvailableInMarket[i] = sellerShopDetails[addressesOfShops[i]];
+        }
+        shops = shopsAvailableInMarket;
+        console.log("Length is here again ????????????", shops.length);
     }
 
     function saveOrder(
@@ -316,6 +374,12 @@ contract KKDEV {
         returns (OrderDetails memory orderMade)
     {
         orderMade = allOrders[1];
+    }
+
+    function getAllShops() public view returns (OrderDetails memory orderMade) {
+        /* make a dummy struct here that will  create a 
+       shop object with the following data : shop Name , shop description , 
+       shop iconURL and an array of all the  url images of the products being sold in thav market . */
     }
 
     function getAllBuyerOrders(address _buyerAddress)

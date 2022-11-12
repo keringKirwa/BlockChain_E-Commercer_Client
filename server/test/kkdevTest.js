@@ -21,29 +21,33 @@ describe("DecentralizedShopSystem", async () => {
   });
 
   describe("BuyerRegistration", () => {
-    it("successfully registers a new user", async () => {
-      await kkdevInstance.registerBuyer(
-        deployer.address,
-        "kkirwa230@gmail.com",
-        "kelvin",
-        "077Pqc7rs"
-      );
+    it("Creates an account for a buyer", async () => {
+      await kkdevInstance
+        .connect(deployer)
+        .registerBuyer(
+          deployer.address,
+          "kkirwa230@gmail.com",
+          "Kelvin Kirwa",
+          "@077Pqc7rs"
+        );
     });
   });
   describe("BuyerLogin", () => {
     it("successfully Logs in the Buyer.", async () => {
-      const [password, emailAddress, customerName] =
-        await kkdevInstance.loginBuyer(deployer.address, "kkirwa230@gmail.com");
+      const [emailAddress, customerName] = await kkdevInstance
+        .connect(deployer)
+        .loginBuyer("kkirwa230@gmail.com", "@077Pqc7rs");
+
       expect(emailAddress).to.equal("kkirwa230@gmail.com");
     });
   });
 
-  describe("Super Seller Shop Register ", () => {
+  describe("CreateShop", () => {
     it("successfully allows users to create  a Shop ", async () => {
       const transaction = await kkdevInstance.createShop(
         deployer.address,
         "kkDEVShop",
-        "kelvin",
+        "@077Pqc7rs",
         imageURL
       );
       await transaction.wait();
@@ -53,7 +57,7 @@ describe("DecentralizedShopSystem", async () => {
   describe("Login Seller", () => {
     it("Successfully allows a user to log into  his/her account .", async () => {
       const [shopName, iconUrl, sellerAccountAddress, shopId] =
-        await kkdevInstance.logIntoMyShop(deployer.address, "kelvin");
+        await kkdevInstance.logIntoMyShop(deployer.address, "@077Pqc7rs");
       expect(shopName).to.equal("kkDEVShop");
       console.log("shop name ::::", shopName);
     });
@@ -61,32 +65,59 @@ describe("DecentralizedShopSystem", async () => {
 
   describe("AddProduct", () => {
     it("Successfully allows a seller to add  the first product to his/her shop.", async () => {
-      const transaction = await kkdevInstance.addProductsToShop(
+      const transaction = await kkdevInstance.addProductToShop(
         deployer.address,
         "Sugar",
         5,
+        "super product selling in the market.",
         imageURL,
-        "super product selling in the market."
+        100
       );
       await transaction.wait();
     });
   });
   describe("AddProduct", () => {
     it("Successfully allows a user to add the second product to the database to his/her shop.", async () => {
-      const transaction = await kkdevInstance.addProductsToShop(
+      const transaction = await kkdevInstance.addProductToShop(
         deployer.address,
         "Sugar",
         5,
+        "super product selling in the market.",
         imageURL,
-        "super product selling in the market."
+        100
       );
       await transaction.wait();
     });
   });
 
-  describe("Get User Products", () => {
+  describe("AddImageToProduct", () => {
+    it("Successfully allows a user to add an image to a given product.", async () => {
+      const transaction = await kkdevInstance.addImageToProduct(1, imageURL);
+      await transaction.wait();
+    });
+  });
+
+  describe("Update Product Quantity", () => {
+    it("Automatically updates the product  quantity ..", async () => {
+      const transaction = await kkdevInstance.updateProductQuantity(
+        deployer.address,
+        1,
+        2
+      );
+      await transaction.wait();
+    });
+  });
+
+  describe("Get Available Shops", () => {
+    it("Successfully Gets all the available  shops ", async () => {
+      const shopsArray = await kkdevInstance.getAvailableShops();
+      console.log("shops available ::::++++++++++>>>>>>>>", shopsArray);
+    });
+  });
+
+  describe("Get Products in a seller shop", () => {
     it("Successfully fetches all the products of the user ::: ", async () => {
-      const userProducts = await kkdevInstance.getUserProducts(
+      const userProducts = await kkdevInstance.getShopProducts(
         deployer.address
       );
       console.log("user products :::: -------->", userProducts);

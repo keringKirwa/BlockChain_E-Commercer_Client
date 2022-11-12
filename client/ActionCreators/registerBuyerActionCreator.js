@@ -34,7 +34,7 @@ export const registerBuyerAction = async (
     );
     setLoading((prevIsLoading) => !prevIsLoading);
     toast.success("Registered Successfully ✔️");
-    router.push("/shops");
+    router.push("/login");
   } catch (error) {
     console.log(error);
     toast.error("sth went missing , please Check your internet connection");

@@ -22,7 +22,7 @@ export const LoginPage = () => {
       <Formik
         initialValues={{
           emailAddress: "",
-          buyerEthAddress: "",
+          password: "",
         }}
         validationSchema={LoginSchema}
         onSubmit={(values, { resetForm, setSubmitting }) => {
@@ -86,27 +86,26 @@ export const LoginPage = () => {
                     touched.emailAddress &&
                     errors.emailAddress}
                 </p>
-
                 <input
                   autoComplete="off"
-                  name="buyerEthAddress"
-                  type="string"
-                  placeholder="Your 42byte Eth Address from Metamask Wallet"
-                  value={values.buyerEthAddress}
+                  name="password"
+                  type="password"
+                  placeholder="shopPassword,eg john34@JD"
+                  value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    touched.buyerEthAddress && errors.buyerEthAddress
+                    touched.password && errors.password
                       ? `${styles.error} ${styles.inputElement} `
-                      : touched.buyerEthAddress && !errors.buyerEthAddress
+                      : touched.password && !errors.password
                       ? `${styles.success} ${styles.inputElement}`
                       : `${styles.inputElement}`
                   }
                 />
-                <p className="text-danger">
-                  {errors.buyerEthAddress &&
-                    touched.buyerEthAddress &&
-                    errors.buyerEthAddress}
+                <p className="text-danger text-center">
+                  {errors.password &&
+                    touched.password &&
+                    errors.password}
                 </p>
 
                 <button

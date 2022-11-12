@@ -13,6 +13,11 @@ export const CreateShop = () => {
   const [loading, setLoading] = useState(false);
   const [shopIconURL, setShopIconURL] = useState("");
   const [shopImage, setShopImage] = useState("");
+
+  /*  address sellerEthAccountAddress,
+        string calldata shopName,
+        string memory shopPassword,
+        string memory iconURL */
   return (
     <div className="pt-5">
       <Formik
@@ -26,10 +31,13 @@ export const CreateShop = () => {
         onSubmit={(values, { resetForm, setSubmitting }) => {
           setLoading((prevIsLoading) => !prevIsLoading);
           uploadImageToCloudinary(shopImage, setShopIconURL);
-          createShopAction({values, shopIconURL, setLoading, ethereum:window.ethereum});
+          createShopAction({
+            values,
+            shopIconURL,
+            setLoading,
+            ethereum: window.ethereum,
+          });
           setSubmitting(false);
-          
-          
         }}
       >
         {({

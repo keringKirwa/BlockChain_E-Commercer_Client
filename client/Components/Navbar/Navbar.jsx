@@ -71,7 +71,7 @@ const Navbar = () => {
         )}
         {userName && (
           <button
-            className={`${styles.button} ${styles.firstLetterButton}`}
+            className={`${styles.button} ${styles.firstLetterButton} center`}
             type="button"
           >
             {userEmail.charAt(0)}
