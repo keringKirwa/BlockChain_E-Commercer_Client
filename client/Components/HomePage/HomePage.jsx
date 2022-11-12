@@ -6,8 +6,6 @@ const list = [1, 2, 3, 4, 5, 6];
 
 import styles from "./HomePage.module.css";
 
-/* https://www.saruk.co.ke/images/29511665404435.jpg */
-
 const reviews = [
   {
     id: 1,
@@ -161,3 +159,6 @@ export const HomePage = () => {
     </div>
   );
 };
+
+/* TODO: run a getServerSideProps here to fetch all the available shops , then fetch all the products for those shops , and serve the page with the data 
+fetched.or use, increamental Static regeneration to get the above data . */

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { Formik, Form, Field } from "formik";
 import { FaTelegramPlane } from "react-icons/fa";
 import { AiTwotoneUnlock } from "react-icons/ai";
@@ -11,10 +12,12 @@ import { RegisterSchema } from "./Yup.js";
 import { MainForm } from "./MainForm";
 
 import { Spinner } from "../../Spinner/Spinner.jsx";
+import { useRouter } from "next/router";
 
 export const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
   const [imageURL, setImageURL] = useState("");
+  const router = useRouter();
 
   const [currentAccount, setCurrentAccount] = useState(false);
 
@@ -29,16 +32,13 @@ export const RegisterForm = () => {
         confirmPassword: "",
       }}
       validationSchema={RegisterSchema}
-      onSubmit={
-        (values, { resetForm, setSubmitting }) => {
-          setLoading((prevIsLoading) => !prevIsLoading);
+      onSubmit={(values, { resetForm, setSubmitting }) => {
+        setLoading((prevIsLoading) => !prevIsLoading);
 
-          registerBuyerAction(values, setLoading, window.ethereum);
+        registerBuyerAction(values, setLoading, window.ethereum,router);
 
-          setSubmitting(false);
-        }
-        
-      }
+        setSubmitting(false);
+      }}
     >
       {({
         errors,
@@ -99,6 +99,9 @@ export const RegisterForm = () => {
                   )}
                 </p>
               </button>
+              <div className="pt-3">
+                Have an account ? <Link href="/login">Login</Link>
+              </div>
             </form>
           </div>
         </div>

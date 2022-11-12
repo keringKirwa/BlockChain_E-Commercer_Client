@@ -3,6 +3,8 @@ pragma solidity ^0.8.9;
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
+/* Address :::: 0x40A28b9F3fAf97B0Ef0C02a8c42C01061Bf55D27 */
+
 contract KKDEV {
     address public contractOwner;
 
@@ -29,7 +31,7 @@ contract KKDEV {
         uint256 shopId;
         string shopName;
         string iconURL;
-        uint256[] userproductsId; /* dynamic arrray */
+        uint256[] userproductsId; /*A dynamic arrray, initially initialized to nothing , that is an empty array. */
     }
 
     struct Product {
@@ -156,10 +158,11 @@ contract KKDEV {
 
     function createShop(
         address sellerEthAccountAddress,
-        string memory shopName,
+        string calldata shopName,
         string memory shopPassword,
         string memory iconURL
     ) external returns (uint256 shopId, string memory message) {
+        /* require that the user has got no shop  */
         shopIdCounter.increment();
         uint256 currentShopId = shopIdCounter.current();
         bytes32 hashedPassword = hashPassword(shopPassword);
@@ -217,8 +220,13 @@ contract KKDEV {
         string calldata imageURI,
         string calldata productDesc
     ) external returns (uint256 prodId) {
-        productIdCounter.increment();
+        /* a user will be adding one product at a time .but now fetching all the user products will happen once. */
+        require(
+            buyerHasShop[userAccAddress] == true,
+            "The buyer has no shop yet"
+        );
 
+        productIdCounter.increment();
         uint256 currentProdId = productIdCounter.current();
 
         Product memory prod = Product(
@@ -231,7 +239,11 @@ contract KKDEV {
         productTable[userAccAddress][currentProdId] = prod;
         uint256[] storage idArray = sellerShopDetails[userAccAddress]
             .userproductsId;
-        idArray.push(currentProdId); /* save the ids of the user products in the storage . */
+        idArray.push(currentProdId);
+
+        /* We add a product to the map (which is actually a table ), then add the id of that product to the array associated with the 
+        user,   this array will help us iterate through the user Poducts . NOTE  that the product in the product is has nothing to do with 
+        MEMORY and therefore , an array can initilaly be set to NULL.  */
 
         prodId = currentProdId;
     }
@@ -243,11 +255,12 @@ contract KKDEV {
     {
         Shop memory sellersShopDetails = sellerShopDetails[userAccAddress];
 
-        uint256[] memory arrayOfProductIds = sellersShopDetails.userproductsId;
+        uint256[] memory arrayOfProductIds = sellersShopDetails.userproductsId; /* copy an array from the storage to the memory  */
         require(arrayOfProductIds.length > 0, "The user has no products yet");
         Product[] memory userProducts = new Product[](arrayOfProductIds.length);
 
         for (uint256 i = 0; i < arrayOfProductIds.length; i++) {
+            /* read shop products from  the storage to the memory  */
             userProducts[i] = productTable[userAccAddress][
                 arrayOfProductIds[i]
             ];

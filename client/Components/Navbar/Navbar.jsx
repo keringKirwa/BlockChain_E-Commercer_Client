@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { list } from "./List";
 import { BigScreenListItem } from "./LargeScreen/BigScreenList";
 import { SmallScreenList } from "./SmallScreen/SmallScreenList";
 
@@ -8,12 +8,17 @@ import { BsFillDiagram3Fill } from "react-icons/bs";
 import { SiPrestashop } from "react-icons/si";
 import { AiOutlineLogin } from "react-icons/ai";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
+import { RiLogoutCircleRLine } from "react-icons/ri";
 
 import styles from "../Navbar/Navbar.module.css";
+import { logout } from "../../store/reducers/authSlice";
+import { list } from "./List";
 
 const Navbar = () => {
-  const router = useRouter();
+  const dispatch = useDispatch();
+  const { userName, userEmail } = useSelector((state) => state.user);
 
+  const router = useRouter();
   const handleLoginRequest = (e) => {
     e.preventDefault();
     router.push("/login");
@@ -22,6 +27,12 @@ const Navbar = () => {
   const handleRegisterRequest = (e) => {
     e.preventDefault();
     router.push("/register");
+  };
+  const handleLogoutRequest = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+
+    router.push("/");
   };
 
   return (
@@ -37,23 +48,51 @@ const Navbar = () => {
       <SmallScreenList
         handleLoginRequest={handleLoginRequest}
         handleRegisterRequest={handleRegisterRequest}
+        handleLogoutRequest={handleLogoutRequest}
+        userName={userName}
       ></SmallScreenList>
+      {/* justify-content-center d-none d-md-none d-lg-flex text-none */}
 
-      <div className="justify-content-center d-none d-md-none d-lg-flex text-none">
-        {list.map((listItem) => (
+      <div
+        className={`${styles.navbarItems}  justify-content-center d-none d-md-none d-lg-flex text-none`}
+      >
+        {list.map((listItem, index) => (
           <BigScreenListItem
-            key={listItem.id}
+            key={index}
             title={listItem.title}
             id={listItem.id}
           />
         ))}
-        <button className={styles.button} onClick={handleLoginRequest}>
-          <AiOutlineLogin className={styles.buttonIcon} /> Login
-        </button>
-        <button className={styles.button} onClick={handleRegisterRequest}>
-          {" "}
-          <MdOutlinePersonAddAlt className={styles.buttonIcon} /> Register
-        </button>
+
+        {!userName && (
+          <button className={styles.button} onClick={handleLoginRequest}>
+            <AiOutlineLogin className={styles.buttonIcon} /> Login
+          </button>
+        )}
+        {userName && (
+          <button
+            className={`${styles.button} ${styles.firstLetterButton}`}
+            type="button"
+          >
+            {userEmail.charAt(0)}
+          </button>
+        )}
+
+        {!userName && (
+          <button className={styles.button} onClick={handleRegisterRequest}>
+            {" "}
+            <MdOutlinePersonAddAlt className={styles.buttonIcon} /> Register
+          </button>
+        )}
+        {userName && (
+          <button
+            className={`${styles.button} ${styles.logoutButton}`}
+            onClick={handleLogoutRequest}
+          >
+            {" "}
+            LogOut <RiLogoutCircleRLine className={`${styles.buttonIcon}`} />
+          </button>
+        )}
       </div>
     </div>
   );

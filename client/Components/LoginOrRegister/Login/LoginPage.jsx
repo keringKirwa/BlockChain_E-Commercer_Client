@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
+import Link from "next/link";
 
 import { Formik, Form, Field } from "formik";
 import { BiLogInCircle } from "react-icons/bi";
@@ -34,7 +35,7 @@ export const LoginPage = () => {
             ethereum: window.ethereum,
             router,
             resetForm,
-            dispatch
+            dispatch,
           });
 
           setSubmitting(false);
@@ -133,6 +134,9 @@ export const LoginPage = () => {
                     )}
                   </p>
                 </button>
+                <div className="pt-3">
+                  Dont have an account ? <Link href="/register">Register</Link>
+                </div>
               </form>
             </div>
           </div>

@@ -1,6 +1,6 @@
 .appBarMain {
     display: flex;
-    justify-content: space-between !important;  
+    justify-content: space-between !important;
 }
 .shopIcon{
     width: 100px;
@@ -9,6 +9,11 @@
     margin: 5px;
    
    
+}
+.navbarItems{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .button {
     border: none;
@@ -23,6 +28,29 @@
 }
 .button:hover {
     color: rgb(128, 128, 131);
+}
+.logoutButton{
+    background-color: red;
+    color: black;
+    height: 35px;
+}
+.logoutButton:hover{
+    color: aliceblue !important;
+    transition-duration: .5s;
+}
+.firstLetterButton{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    background-color: #dcdcdc;
+    border-radius: 100%;
+    color: black;
+}
+.firstLetterButton:hover{
+    background-color: rgb(221, 235, 248);
 }
 
 .appName{
@@ -41,4 +69,16 @@ background-image: linear-gradient(60deg,#f96060, #5e78cc );
         font-size:30px ;
     }
     
+}
+
+@media screen and (min-width:700px) {
+.appBarMain {
+        display: flex;
+        justify-content: space-between !important;
+        position: fixed;
+        top: 0;
+        z-index: 5;
+        width: 100% !important;
+    }
+
 }

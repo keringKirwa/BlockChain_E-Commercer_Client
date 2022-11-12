@@ -6,7 +6,7 @@ import { Modal } from "./Modal";
 
 import styles from "./SmallScreen.module.css";
 
-export const SmallScreenList = () => {
+export const SmallScreenList = ({userName}) => {
   const router = useRouter();
   const [whenModelIsNotOpen, updateOpen] = useState(true);
   const handleRegisterRequest = (e) => {
@@ -18,6 +18,12 @@ export const SmallScreenList = () => {
     e.preventDefault();
     router.push("/login");
     updateOpen((prevOpen) => !prevOpen);
+  };
+  const handleLogoutRequest = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+
+    router.push("/");
   };
 
   const setOpen = () => {
@@ -38,6 +44,9 @@ export const SmallScreenList = () => {
           setOpen={setOpen}
           handleLoginRequest={handleLoginRequest}
           handleRegisterRequest={handleRegisterRequest}
+          handleLogoutRequest={handleLogoutRequest}
+          userName={userName}
+
         />
       )}
     </div>

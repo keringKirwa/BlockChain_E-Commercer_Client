@@ -7,7 +7,6 @@ import { persistReducer, persistStore } from "redux-persist";
 
 import thunk from "redux-thunk";
 
-/* storage.removeItem('persist:root') This code here will clear all the  persisted state  */
 
 const persistConfig = {
   key: "root",

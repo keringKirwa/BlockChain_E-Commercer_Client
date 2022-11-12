@@ -11,7 +11,7 @@ export const LandingPage = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    router.push("/home");
+    router.push("/shops");
   };
   return (
     <div

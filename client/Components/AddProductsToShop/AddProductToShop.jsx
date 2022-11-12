@@ -54,11 +54,6 @@ export const AddProductToShop = () => {
                 <span className={styles.loginText}>
                   Add Product To Your Shop
                 </span>
-
-                {/* productName: "",
-          productQuantity: 0,
-          productImageURL: "",
-          productDescription: "", */}
                 <input
                   autoComplete="off"
                   name="productName"

@@ -7,7 +7,7 @@ export const BigScreenListItem = ({ title, id }) => {
   return (
     <>
       <div>
-        <Link href={`/${id}`} className={styles.listItem}>
+        <Link href={id ? `/${id}` : "/"} className={styles.listItem}>
           <button className={styles.buttonLink}>{title}</button>
         </Link>
       </div>

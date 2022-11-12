@@ -3,6 +3,7 @@ import Image from "next/image";
 import { AiOutlineLogin } from "react-icons/ai";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
 import image from "../../../public/block.svg";
+import { RiLogoutCircleRLine } from "react-icons/ri";
 import Link from "next/link";
 
 export const Modal = ({
@@ -11,10 +12,12 @@ export const Modal = ({
   setOpen,
   handleLoginRequest,
   handleRegisterRequest,
+  handleLogoutRequest,
+  userName,
 }) => {
   const listItems = [
-    { page: "/home", text: "Home Page" },
-    { page: "/shops", text: "See Available Shops" },
+    { page: "/", text: "Home Page" },
+    { page: "/home", text: "See Available Shops" },
     { page: "/products", text: "Products you can Sell" },
     { page: "/about-us", text: "About us" },
   ];
@@ -47,14 +50,27 @@ export const Modal = ({
           div
           className="d-flex justify-content-center align-items-center col-12"
         >
-          {" "}
-          <button className={styles.button} onClick={handleLoginRequest}>
-            <AiOutlineLogin className={styles.buttonIcon} /> Login
-          </button>
-          <button className={styles.button} onClick={handleRegisterRequest}>
-            {" "}
-            <MdOutlinePersonAddAlt className={styles.buttonIcon} /> Register
-          </button>
+          {!userName && (
+            <button className={styles.button} onClick={handleLoginRequest}>
+              <AiOutlineLogin className={styles.buttonIcon} /> Login
+            </button>
+          )}
+
+          {!userName && (
+            <button className={styles.button} onClick={handleRegisterRequest}>
+              {" "}
+              <MdOutlinePersonAddAlt className={styles.buttonIcon} /> Register
+            </button>
+          )}
+          {userName && (
+            <button
+              className={`${styles.button} ${styles.logoutButton}`}
+              onClick={handleLogoutRequest}
+            >
+              {" "}
+              LogOut <RiLogoutCircleRLine className={`${styles.buttonIcon}`} />
+            </button>
+          )}
         </div>
       </div>
     </div>

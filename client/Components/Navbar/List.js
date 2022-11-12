@@ -1,16 +1,17 @@
 export const list = [
   {
-    id: "home",
+    id: "",
     title: "Home",
-  },
-  {
-    id: "about-us",
-    title: "AboutUs",
   },
   {
     id: "shops",
     title: "shops",
   },
+  {
+    id: "about-us",
+    title: "AboutUs",
+  },
+
   {
     id: "contact-us",
     title: "ContactUs",

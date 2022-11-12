@@ -40,6 +40,9 @@
     height: 100px;
     margin: 5px;
 }
+.logoutButton{
+    background-color: red;
+}
 
 .link{
     width: 100px;
@@ -73,7 +76,22 @@
     color: white;
    
 }
-
+.logoutButton {
+    background-color: red;
+    color: black;
+    width: 100%;
+    height: 40px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+     align-items: center;
+     gap: 5px;
+     border: none;
+    }
+.logoutButton:hover{
+    color: white;
+    transition-duration: 1s; 
+}
 .mainLinkBox{
     /* dona combine the css flex column with bootstrap col-12.these are two conflicting things. */
    

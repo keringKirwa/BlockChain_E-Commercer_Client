@@ -1,7 +1,12 @@
 import toast from "react-hot-toast";
 import { ethers } from "ethers";
 import { contractABI, contractAddress } from "../utils/constants";
-export const registerBuyerAction = async (values, setLoading, ethereum) => {
+export const registerBuyerAction = async (
+  values,
+  setLoading,
+  ethereum,
+  router
+) => {
   const { buyerEthAddress, firstName, lastName, emailAddress, password } =
     values;
 
@@ -27,10 +32,9 @@ export const registerBuyerAction = async (values, setLoading, ethereum) => {
       `${firstName} ${lastName}`,
       password
     );
-
-    console.log(transactionHash);
     setLoading((prevIsLoading) => !prevIsLoading);
     toast.success("Registered Successfully ✔️");
+    router.push("/shops");
   } catch (error) {
     console.log(error);
     toast.error("sth went missing , please Check your internet connection");
