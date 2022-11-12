@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 
 import { Formik, Form, Field } from "formik";
 import { BiLogInCircle } from "react-icons/bi";
@@ -12,6 +13,7 @@ import { Spinner } from "../../Spinner/Spinner";
 import { loginBuyerAction } from "../../../ActionCreators/LoginBuyerActionCreator.js";
 
 export const LoginPage = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   return (
@@ -32,6 +34,7 @@ export const LoginPage = () => {
             ethereum: window.ethereum,
             router,
             resetForm,
+            dispatch
           });
 
           setSubmitting(false);

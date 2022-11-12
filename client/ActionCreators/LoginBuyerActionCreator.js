@@ -2,18 +2,19 @@ import toast from "react-hot-toast";
 import { ethers } from "ethers";
 import { contractABI, contractAddress } from "../utils/constants";
 import { createEthereumContract } from "../utils/createEthContract";
+import { signin } from "../store/reducers/authSlice";
 export const loginBuyerAction = async (loginDetails) => {
-  const { values, setLoading, ethereum, router, resetForm } = loginDetails;
+  const { values, setLoading, ethereum, router, resetForm, dispatch } =
+    loginDetails;
   const { emailAddress, buyerEthAddress } = values;
 
   try {
     alert(emailAddress);
     const transactionsContract = await createEthereumContract(ethereum);
-    const result = await transactionsContract.loginBuyer(
-      buyerEthAddress,
-      emailAddress
-    );
-    console.log("the return of the login are:::::", result);
+    const [userPassword, loggedInUserEmail, loggedInUserName] =
+      await transactionsContract.loginBuyer(buyerEthAddress, emailAddress);
+
+    dispatch(signin({ loggedInUserEmail, loggedInUserName }));
 
     setLoading((prevIsLoading) => !prevIsLoading);
     resetForm();
@@ -22,10 +23,6 @@ export const loginBuyerAction = async (loginDetails) => {
   } catch (error) {
     console.log(error);
     setLoading((prevIsLoading) => !prevIsLoading);
-    toast.error(
-      "sth went missing , please Check your internet connection then Retry again"
-    );
+    toast.error("Email or Eth Account Address Not Correct. ");
   }
-
-  /* pass data to the redux toolkit */
 };

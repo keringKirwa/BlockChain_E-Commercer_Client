@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.0",
     "bootstrap": "^4.6.2",
     "canvas-confetti": "^1.6.0",
     "cloudinary": "^1.32.0",
+    "ethers": "^5.5.1",
     "formik": "^2.2.9",
     "mdb-react-ui-kit": "^5.0.0",
     "next": "13.0.2",
@@ -20,10 +22,11 @@
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.6.0",
+    "react-redux": "^8.0.5",
     "react-responsive-carousel": "^3.2.23",
     "react-spinners": "^0.13.6",
+    "redux-persist": "^6.0.0",
     "web3": "^1.8.1",
-    "yup": "^0.32.11",  
-    "ethers": "^5.5.1"
+    "yup": "^0.32.11"
   }
 }
