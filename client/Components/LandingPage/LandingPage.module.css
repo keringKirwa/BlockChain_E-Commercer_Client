@@ -49,13 +49,25 @@
     transition-duration: 1s;
 }
 
-
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 450px) {
     .welcome {
-        margin-top: 10px;
-       font-size: 30px;
-       flex: auto;
+        margin-top: 1px;
+        font-size: 30px;
+        flex: auto;
 
+    }
+
+    .mainContainer {
+        margin-top: -60%;
+
+    }
+
+    .textSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: -50px;
+        gap: 10px;
     }
 }
 

@@ -13,10 +13,14 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 import styles from "../Navbar/Navbar.module.css";
 import { logout } from "../../store/reducers/authSlice";
 import { list } from "./List";
+import Image from "next/image";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const { userName, userEmail } = useSelector((state) => state.user);
+  const { shopName, shopId, shopIconURL } = useSelector(
+    (state) => state.loggedInShop
+  );
 
   const router = useRouter();
   const handleLoginRequest = (e) => {
@@ -40,9 +44,11 @@ const Navbar = () => {
       className={`${styles.appBarMain}  flex-start bg-dark align-items-center px-4`}
     >
       <div className="row center">
-        <SiPrestashop className={styles.shopIcon}></SiPrestashop>
+        {!shopName && <SiPrestashop className={styles.shopIcon}></SiPrestashop>}
+        {shopName && <img src={shopIconURL} className={`${styles.shopIcon}`} />}
 
-        <h3 className={styles.appName}>WingsSide</h3>
+        {!shopName && <h3 className={styles.appName}>WingsSide</h3>}
+        {shopName && <h3 className={styles.appName}>{shopName}</h3>}
       </div>
 
       <SmallScreenList

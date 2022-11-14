@@ -25,7 +25,7 @@ export const authSlice = createSlice({
     logout: (state) => {
       window.localStorage.removeItem("persist:root");
       state.userName = "";
-      state.userId = "";
+      state.userEmail = "";
     },
   },
 });

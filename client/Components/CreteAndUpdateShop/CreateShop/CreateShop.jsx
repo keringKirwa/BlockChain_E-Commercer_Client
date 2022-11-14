@@ -9,6 +9,7 @@ import { Spinner } from "../../Spinner/Spinner";
 import { uploadImageToCloudinary } from "../../../utils/uploadImagToCloudinary";
 import { createShopAction } from "../../../ActionCreators/createShopAction";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export const CreateShop = () => {
   const router = useRouter();
@@ -170,6 +171,10 @@ export const CreateShop = () => {
                     )}
                   </p>
                 </button>
+                <div className="pt-3">
+                  Alredy created One ?{" "}
+                  <Link href="/shop/login-to-my-shop">Login</Link>
+                </div>
               </form>
             </div>
           </div>

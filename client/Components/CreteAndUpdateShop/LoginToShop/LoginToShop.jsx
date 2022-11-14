@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { loginToShopSchema } from "./LoginToShopSchema";
 import { Spinner } from "../../Spinner/Spinner";
 import { loginToShopAction } from "../../../ActionCreators/LoginToShopActionCreator";
+import Link from "next/link";
 
 export const LoginToShop = () => {
   const dispatch = useDispatch();
@@ -66,7 +67,6 @@ export const LoginToShop = () => {
                 <input
                   autoComplete="off"
                   name="sellerEthAddress"
-                  type="string"
                   placeholder="Seller's 42byte Eth Address from Metamask Wallet"
                   value={values.sellerEthAddress}
                   onChange={handleChange}
@@ -129,6 +129,10 @@ export const LoginToShop = () => {
                     )}
                   </p>
                 </button>
+                <div className="pt-3">
+                  Doesn'thave a shop ?{" "}
+                  <Link href="/shop/create-shop">Register</Link>
+                </div>
               </form>
             </div>
           </div>
