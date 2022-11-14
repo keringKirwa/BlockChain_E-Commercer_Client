@@ -1,5 +1,5 @@
 import { cloudName, presetName } from "./constants";
-export const uploadImageToCloudinary = async (image, setShopIconURL) => {
+export const uploadImageToCloudinary = async (image) => {
   const data = new FormData();
   data.append("file", image);
   data.append("upload_preset", "kkdevImages");
@@ -13,7 +13,8 @@ export const uploadImageToCloudinary = async (image, setShopIconURL) => {
       }
     );
     const file = await res.json();
-    setShopIconURL(file.url);
+    alert(file.url);
+    return file.url;
     
   } catch (error) {
     console.log("This is the error :::: =====>", error);

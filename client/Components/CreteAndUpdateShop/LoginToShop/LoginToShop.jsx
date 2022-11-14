@@ -1,40 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+
 import { Formik, Form, Field } from "formik";
+import { BiLogInCircle } from "react-icons/bi";
 import { FaTelegramPlane } from "react-icons/fa";
-import { createShopSchema } from "./createShopSchema";
 import toast from "react-hot-toast";
 
-import styles from "./CreateShop.module.css";
-import { Spinner } from "../../Spinner/Spinner";
-import { uploadImageToCloudinary } from "../../../utils/uploadImagToCloudinary";
-import { createShopAction } from "../../../ActionCreators/createShopAction";
+import styles from "./LoginToShop.module.css";
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import { loginToShopSchema } from "./LoginToShopSchema";
+import { Spinner } from "../../Spinner/Spinner";
+import { loginToShopAction } from "../../../ActionCreators/LoginToShopActionCreator";
 
-export const CreateShop = () => {
+export const LoginToShop = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [shopImage, setShopImage] = useState("");
-
   return (
     <div className="pt-5">
       <Formik
         initialValues={{
-          buyerEthAddress: "",
-          shopName: "",
-          shopPassword: "",
-          shopProfileImage: "",
+          sellerEthAddress: "",
+          password: "",
         }}
-        validationSchema={createShopSchema}
-        onSubmit={async (values, { resetForm, setSubmitting }) => {
+        validationSchema={loginToShopSchema}
+        onSubmit={(values, { resetForm, setSubmitting }) => {
           setLoading((prevIsLoading) => !prevIsLoading);
-          const imageURI = await uploadImageToCloudinary(shopImage);
-          await createShopAction({
+
+          loginToShopAction({
             values,
-            imageURI,
             setLoading,
             ethereum: window.ethereum,
             router,
+            resetForm,
+            dispatch,
           });
+
           setSubmitting(false);
         }}
       >
@@ -52,80 +53,40 @@ export const CreateShop = () => {
           values,
         }) => (
           <div className="container-fluid d-flex flex-column align-items-center  ">
-            {loading && <Spinner loading={loading} styles={styles}></Spinner>}
+            {loading && <Spinner loading={loading}></Spinner>}
             <div className={`text-info container-fluid `}>
               <form
                 onSubmit={handleSubmit}
                 className={`${styles.formCSS} d-flex justify-content-center align-items-center flex-column `}
               >
-                <span className={styles.loginText}>Create Shop</span>
+                <span className={styles.loginText}>
+                  Find Your Shop
+                  <BiLogInCircle className={styles.unlockIcon}></BiLogInCircle>
+                </span>
                 <input
                   autoComplete="off"
-                  name="buyerEthAddress"
+                  name="sellerEthAddress"
                   type="string"
                   placeholder="Seller's 42byte Eth Address from Metamask Wallet"
-                  value={values.buyerEthAddress}
+                  value={values.sellerEthAddress}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    touched.buyerEthAddress && errors.buyerEthAddress
+                    touched.sellerEthAddress && errors.sellerEthAddress
                       ? `${styles.error} ${styles.inputElement} `
-                      : touched.buyerEthAddress && !errors.buyerEthAddress
+                      : touched.sellerEthAddress && !errors.sellerEthAddress
                       ? `${styles.success} ${styles.inputElement}`
                       : `${styles.inputElement}`
                   }
                 />
                 <p className="text-danger">
-                  {errors.buyerEthAddress &&
-                    touched.buyerEthAddress &&
-                    errors.buyerEthAddress}
+                  {errors.sellerEthAddress &&
+                    touched.sellerEthAddress &&
+                    errors.sellerEthAddress}
                 </p>
                 <input
                   autoComplete="off"
-                  name="shopName"
-                  type="text"
-                  placeholder="Shop Name,eg KKDEV~SHOP"
-                  value={values.shopName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    touched.shopName && errors.shopName
-                      ? `${styles.error} ${styles.inputElement} `
-                      : touched.shopName && !errors.shopName
-                      ? `${styles.success} ${styles.inputElement}`
-                      : `${styles.inputElement}`
-                  }
-                />
-                <p className="text-danger text-center">
-                  {errors.shopName && touched.shopName && errors.shopName}
-                </p>
-
-                <input
-                  autoComplete="off"
-                  name="shopProfileImage"
-                  type="file"
-                  required
-                  placeholder="Choose Your Shop Profile Image"
-                  value={values.shopIconURL}
-                  onChange={(e) => setShopImage(e.target.files[0])}
-                  onBlur={handleBlur}
-                  className={
-                    touched.shopProfileImage && errors.shopProfileImage
-                      ? `${styles.error} ${styles.inputElement} `
-                      : touched.shopProfileImage && !errors.shopProfileImage
-                      ? `${styles.success} ${styles.inputElement}`
-                      : `${styles.inputElement}`
-                  }
-                />
-                <p className="text-danger text-center">
-                  {errors.shopProfileImage &&
-                    touched.shopProfileImage &&
-                    errors.shopProfileImage}
-                </p>
-
-                <input
-                  autoComplete="off"
-                  name="shopPassword"
+                  name="password"
                   type="password"
                   placeholder="shopPassword,eg john34@JD"
                   value={values.password}
@@ -140,9 +101,7 @@ export const CreateShop = () => {
                   }
                 />
                 <p className="text-danger text-center">
-                  {errors.shopPassword &&
-                    touched.shopPassword &&
-                    errors.shopPassword}
+                  {errors.password && touched.password && errors.password}
                 </p>
 
                 <button

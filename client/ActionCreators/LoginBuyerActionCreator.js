@@ -4,7 +4,6 @@ import { contractABI, contractAddress } from "../utils/constants";
 import { createEthereumContract } from "../utils/createEthContract";
 import { signin } from "../store/reducers/authSlice";
 export const loginBuyerAction = async (loginDetails) => {
-  /* string calldata email, string calldata password */
   const { values, setLoading, ethereum, router, resetForm, dispatch } =
     loginDetails;
   const { emailAddress, password } = values;

@@ -2,25 +2,30 @@ import toast from "react-hot-toast";
 import { ethers } from "ethers";
 import { contractABI, contractAddress } from "../utils/constants";
 import { createEthereumContract } from "../utils/createEthContract";
+
+/*  values,
+            imageURI,
+            setLoading,
+            ethereum: window.ethereum,
+            router, */
 export const createShopAction = async ({
   values,
-  shopIconURL,
+  imageURI,
   setLoading,
   ethereum,
+  router,
 }) => {
   const { buyerEthAddress, shopPassword, shopName } = values;
   try {
-    /*  returns (uint256 shopId, string memory message) */
+    alert(imageURI);
 
     const transactionsContract = await createEthereumContract(ethereum);
 
-    /* the word iterable means that the return value is not an array of data. */
-
-    const transactionHash = await transactionsContract.callStatic.createShop(
+    const transactionHash = await transactionsContract.createShop(
       buyerEthAddress,
       shopName,
       shopPassword,
-      shopIconURL
+      imageURI
     );
     console.log("the transactionHash is :::::", transactionHash);
     const hexToDecimal = (hex) => parseInt(hex, 16);
@@ -30,12 +35,11 @@ export const createShopAction = async ({
     );
 
     setLoading((prevIsLoading) => !prevIsLoading);
-    toast.success("Registered Successfully ✔️");
+    toast.success("Shop Created Successfully ✔️");
+    router.push("/shop/login-to-my-shop");
   } catch (error) {
     console.log(error);
     setLoading((prevIsLoading) => !prevIsLoading);
     toast.error("sth went missing , please Check your internet connection");
   }
-
-  /* pass data to the redux toolkit */
 };
