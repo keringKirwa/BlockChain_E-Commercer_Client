@@ -13,6 +13,10 @@ export const loginBuyerAction = async (loginDetails) => {
     const transactionsContract = await createEthereumContract(ethereum);
     const [loggedInUserEmail, loggedInUserName] =
       await transactionsContract.loginBuyer(emailAddress, password);
+    const shopArray = await transactionsContract.getAvailableShops();
+    console.log("the shops available After login are  as follows :::::", {
+      shopArray,
+    });
 
     dispatch(signin({ loggedInUserEmail, loggedInUserName }));
 

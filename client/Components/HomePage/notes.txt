@@ -1,0 +1,10 @@
+ useEffect(() => {
+    const fetchData = async () => {
+      const transactionsContract = await createEthereumContract(
+        window.ethereum
+      );
+      const shopsArray = await transactionsContract.getAvailableShops();
+      console.log(shopsArray);
+    };
+    fetchData();
+  }, []);

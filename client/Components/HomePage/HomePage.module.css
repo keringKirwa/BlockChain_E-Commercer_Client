@@ -22,13 +22,11 @@
 }
 
 .handleMarginProblem{
-    padding: 10px;
-    margin-bottom: 70px;
-    margin-bottom: 45px;
+    padding: 5px;
+    margin: 45px 0px;
    
 }
 .shop{
-   min-width: 90%;
    height: 100%;
    border: 1px solid gray;
     border-radius: 10px;
@@ -38,7 +36,9 @@
 .shopDetails{
   
     margin-top: 100px;
-   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     
     
 }
@@ -70,7 +70,7 @@ position: absolute;
     background-color: black;
     font-size: 20px;
     height: 50px;
-    width: 60%;
+    width: 100% !important;
     color: white;
     border-radius: 7px;
     border: 1px solid red;
@@ -115,7 +115,30 @@ margin-bottom: 20px;
         z-index: 2;
         overflow-x: hidden;
 
+
 }
+.handleMarginProblem {
+    padding: 0px;
+    margin: 45px 0px;
+
+}
+.carouselImageIndividual {
+ all: initial !important;
+    object-fit: cover;
+    width: 150px !important;
+    height: 150px !important;
+}
+
+.imagesSlidingContainer {
+    all: initial !important;
+    width: 100% !important;
+    height: 150px;
+    margin-bottom: 5px !important;
+    display: flex !important;
+    justify-content: center !important;;
+
+}
+
 
 
 }
@@ -134,7 +157,7 @@ margin-bottom: 20px;
 
 }
 
-.carouselImageIndividual{
+.carouselImage{
 
     object-fit: contain;
     width: 100%;
