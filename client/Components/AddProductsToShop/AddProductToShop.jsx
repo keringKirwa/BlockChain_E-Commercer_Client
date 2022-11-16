@@ -6,9 +6,14 @@ import toast from "react-hot-toast";
 
 import styles from "./AddProductToShop.module.css";
 import { Spinner } from "../Spinner/Spinner";
+import { uploadImageToCloudinary } from "../../utils/uploadImagToCloudinary";
+import { addProductToShopAction } from "../../ActionCreators/AddProductToShopActionCreator";
+import { useRouter } from "next/router";
 
 export const AddProductToShop = () => {
   const [loading, setLoading] = useState(false);
+  const [productImage, setProductImage] = useState("");
+  const router = useRouter();
   return (
     <div className="pt-5">
       <Formik
@@ -19,16 +24,20 @@ export const AddProductToShop = () => {
           productDescription: "",
         }}
         validationSchema={addProductSchema}
-        onSubmit={(values, { resetForm, setSubmitting }) => {
+        onSubmit={async (values, { resetForm, setSubmitting }) => {
+          alert("are you sure you want to add a new product?");
           setLoading((prevIsLoading) => !prevIsLoading);
-          setTimeout(() => {
-            /* Capture the product object , then then upload the image to the Claudinary , and wait till yiu get back the URL of that image .*/
 
-            setSubmitting(false);
-
-            setLoading((prevIsLoading) => !prevIsLoading);
-            toast.success("Product Added successfully");
-          }, 4000);
+          const imageURI = await uploadImageToCloudinary(productImage);
+          await addProductToShopAction({
+            values,
+            imageURI,
+            setLoading,
+            resetForm,
+            ethereum: window.ethereum,
+            router,
+          });
+          setSubmitting(false);
         }}
       >
         {({
@@ -39,9 +48,7 @@ export const AddProductToShop = () => {
           handleChange,
           isSubmitting,
           handleSubmit,
-
           handleBlur,
-
           values,
         }) => (
           <div className="container-fluid d-flex flex-column align-items-center  ">
@@ -101,10 +108,9 @@ export const AddProductToShop = () => {
                   autoComplete="off"
                   name="productImageURL"
                   type="file"
-                  placeholder="Choose file... "
-                  value={values.productImageURL}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  required
+                  placeholder="Choose image... "
+                  onChange={(e) => setProductImage(e.target.files[0])}
                   className={
                     touched.productImageURL && errors.productImageURL
                       ? `${styles.error} ${styles.inputElement} `
@@ -113,12 +119,6 @@ export const AddProductToShop = () => {
                       : `${styles.inputElement}`
                   }
                 />
-                <p className="text-danger">
-                  {errors.productImageURL &&
-                    touched.productImageURL &&
-                    errors.productImageURL}
-                </p>
-
                 <input
                   autoComplete="off"
                   name="productDescription"

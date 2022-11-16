@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import { FaTelegramPlane } from "react-icons/fa";
 import { createShopSchema } from "./createShopSchema";
-import toast from "react-hot-toast";
 
 import styles from "./CreateShop.module.css";
 import { Spinner } from "../../Spinner/Spinner";

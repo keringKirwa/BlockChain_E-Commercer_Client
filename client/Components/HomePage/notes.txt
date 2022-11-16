@@ -8,3 +8,7 @@
     };
     fetchData();
   }, []);
+
+
+
+  const hexToDecimal = (hex) => parseInt(hex, 16);

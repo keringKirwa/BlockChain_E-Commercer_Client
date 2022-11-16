@@ -26,6 +26,7 @@
     margin: 45px 0px;
    
 }
+
 .shop{
    height: 100%;
    border: 1px solid gray;
@@ -33,6 +34,12 @@
     position: relative;
 
 }
+.shop:hover{
+    box-shadow: 0px 10px 10px gray;
+        transition-duration: 1s;
+
+}
+
 .shopDetails{
   
     margin-top: 100px;
@@ -44,8 +51,8 @@
 }
 .shopImageContainer{
 position: absolute;
-    top: -10%;
-    right: 36%;
+    top: -13%;
+    right: 32%;
     border-radius: 50%;
     z-index: 2;
     
@@ -53,7 +60,10 @@ position: absolute;
 }
 
 .shopImage{
+    height: 150px;
+    width: 150px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .shopName{
@@ -75,9 +85,7 @@ position: absolute;
     border-radius: 7px;
     border: 1px solid red;
 }
-.visitButton:hover{
- color: black;
-}
+
 
 .automatedScrollImage{
     width: 100%;
@@ -85,23 +93,13 @@ position: absolute;
     display: block;
 }
 
-#maduka{
-    color: yellow;
-    font-size: 20px !important;
-    
-}
-
-.carouselOneImage{
-width: 200px;
-height: 200px;
-object-fit: contain;
-border-radius: 10px;
-margin-bottom: 20px;
-
-}
-
 @media screen and (max-width:450px) {
-
+    .shopImage {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
 
 .shopName{
     font-size: 27px;
@@ -109,8 +107,6 @@ margin-bottom: 20px;
 }
 .shopImageContainer{
     position: absolute;
-        top: -10%;
-        right: 30%;
         border-radius: 50%;
         z-index: 2;
         overflow-x: hidden;
@@ -121,12 +117,6 @@ margin-bottom: 20px;
     padding: 0px;
     margin: 45px 0px;
 
-}
-.carouselImageIndividual {
- all: initial !important;
-    object-fit: cover;
-    width: 150px !important;
-    height: 150px !important;
 }
 
 .imagesSlidingContainer {
@@ -143,10 +133,7 @@ margin-bottom: 20px;
 
 }
 
-.handleMarginProblem :hover{
- background-color: beige;
- transition-duration: .6s;
-}
+
 
 
 .divAndImageContainer{

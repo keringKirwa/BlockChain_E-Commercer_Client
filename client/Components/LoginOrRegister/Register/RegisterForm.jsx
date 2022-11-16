@@ -33,10 +33,6 @@ export const RegisterForm = () => {
       }}
       validationSchema={RegisterSchema}
       onSubmit={(values, { resetForm, setSubmitting }) => {
-        /* address custAccountAddress,
-        string memory emailAddress,
-        string memory customerName,
-        string memory password */
         setLoading((prevIsLoading) => !prevIsLoading);
 
         registerBuyerAction(values, setLoading, window.ethereum, router);

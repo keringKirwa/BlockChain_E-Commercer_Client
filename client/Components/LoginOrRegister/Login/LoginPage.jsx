@@ -26,7 +26,6 @@ export const LoginPage = () => {
         }}
         validationSchema={LoginSchema}
         onSubmit={(values, { resetForm, setSubmitting }) => {
-          /*   alert(JSON.stringify(values, null, 2)); */
           setLoading((prevIsLoading) => !prevIsLoading);
 
           loginBuyerAction({
@@ -103,9 +102,7 @@ export const LoginPage = () => {
                   }
                 />
                 <p className="text-danger text-center">
-                  {errors.password &&
-                    touched.password &&
-                    errors.password}
+                  {errors.password && touched.password && errors.password}
                 </p>
 
                 <button

@@ -3,20 +3,20 @@ import { ethers } from "ethers";
 import { contractABI, contractAddress } from "../utils/constants";
 import { createEthereumContract } from "../utils/createEthContract";
 import { signin } from "../store/reducers/authSlice";
+import { populateAvailableShops } from "../store/reducers/availableShopsReducer";
 export const loginBuyerAction = async (loginDetails) => {
   const { values, setLoading, ethereum, router, resetForm, dispatch } =
     loginDetails;
   const { emailAddress, password } = values;
 
   try {
-    /* TODO: capture the ethereum address too  an populate it to the redux store . */
     const transactionsContract = await createEthereumContract(ethereum);
     const [loggedInUserEmail, loggedInUserName] =
       await transactionsContract.loginBuyer(emailAddress, password);
+
     const shopArray = await transactionsContract.getAvailableShops();
-    console.log("the shops available After login are  as follows :::::", {
-      shopArray,
-    });
+    dispatch(populateAvailableShops({ shopArray }));
+    console.log("The available shop arrays:", shopArray);
 
     dispatch(signin({ loggedInUserEmail, loggedInUserName }));
 

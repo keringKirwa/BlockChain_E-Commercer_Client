@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import userReducer from "./reducers/authSlice.js";
 import shopLoginReducer from "./reducers/loggedInShop";
+import availableShopsReducer from "./reducers/availableShopsReducer";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "@reduxjs/toolkit";
 import {
@@ -15,6 +16,7 @@ import {
   REGISTER,
 } from "redux-persist";
 
+
 const persistConfig = {
   key: "root",
   storage,
@@ -22,6 +24,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userReducer,
   loggedInShop: shopLoginReducer,
+  allShops:availableShopsReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
