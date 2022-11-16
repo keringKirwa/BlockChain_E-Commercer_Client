@@ -105,14 +105,16 @@ position: absolute;
     font-size: 27px;
     font-weight: bold;
 }
-.shopImageContainer{
+.shopImageContainer {
     position: absolute;
-        border-radius: 50%;
-        z-index: 2;
-        overflow-x: hidden;
+    top: -9%;
+    right: 32%;
+    border-radius: 50%;
+    z-index: 2;
 
 
 }
+
 .handleMarginProblem {
     padding: 0px;
     margin: 45px 0px;

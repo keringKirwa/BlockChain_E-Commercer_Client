@@ -1,12 +1,15 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdCut } from "react-icons/io";
 import { Modal } from "./Modal";
 
 import styles from "./SmallScreen.module.css";
+import { logout } from "../../../store/reducers/authSlice";
 
-export const SmallScreenList = ({userName}) => {
+export const SmallScreenList = ({ userName }) => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [whenModelIsNotOpen, updateOpen] = useState(true);
   const handleRegisterRequest = (e) => {
@@ -46,7 +49,6 @@ export const SmallScreenList = ({userName}) => {
           handleRegisterRequest={handleRegisterRequest}
           handleLogoutRequest={handleLogoutRequest}
           userName={userName}
-
         />
       )}
     </div>

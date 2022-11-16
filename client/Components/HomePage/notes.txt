@@ -12,3 +12,7 @@
 
 
   const hexToDecimal = (hex) => parseInt(hex, 16);
+
+   router.push(
+                        `shop/${hexToDecimal(item[2].hex)}?address=${item[0]}`
+                      );

@@ -3,25 +3,18 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import { RatedShop } from "./BestRatedShopBanner/RatedShop";
 import Carousel from "react-bootstrap/Carousel";
+import { useRouter } from "next/router";
 
 import { HiPlus } from "react-icons/hi";
-const list = [1, 2, 3, 4, 5, 6];
 
 import styles from "./HomePage.module.css";
 import { useSelector } from "react-redux";
 import { fetchAvailableShopsAction } from "../../ActionCreators/fetchAllShopsActionCreator";
-import { createEthereumContract } from "../../utils/createEthContract";
-
-/* address sellerEthereumAddress;
-        bytes32 shopPassword;
-        uint256 shopId;
-        string shopName;
-        string iconURL;
-        uint256[] userproductsId;
-        string[] productsURL; */
 
 export const HomePage = ({ shopArray }) => {
+  const router = useRouter();
   console.log(shopArray);
+  const hexToDecimal = (hex) => parseInt(hex, 16);
   const { userName, userEmail } = useSelector((state) => state.user);
   const { shopName } = useSelector((state) => state.loggedInShop);
   const availableShops = useSelector((state) => state.allShops.allShopsArray);
@@ -31,7 +24,6 @@ export const HomePage = ({ shopArray }) => {
       <div
         className={`${styles.lowlyRatedShopsContainer} row  center w-100 container-fluid m-1`}
       >
-        {console.log("Available Shops are :::", availableShops)}
         {availableShops?.map((item, index) => (
           <div
             className={`${styles.handleMarginProblem} w-100 center col-sm-12 col-md-6 col-lg-4 col-xl-3 `}
@@ -78,7 +70,14 @@ export const HomePage = ({ shopArray }) => {
                 </div>
 
                 <div className="center">
-                  <button className={`${styles.visitButton} mb-3`}>
+                  <button
+                    className={`${styles.visitButton} mb-3`}
+                    onClick={() => {
+                      router.push(
+                        `shop/${hexToDecimal(item[2].hex)}?address=${item[0]}`
+                      );
+                    }}
+                  >
                     Visit This Shop
                   </button>
                 </div>
