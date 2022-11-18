@@ -2,6 +2,8 @@ import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import useSWR, { useSWRConfig } from "swr";
+
 import { persistor, store } from "../store/index";
 import { PersistGate } from "redux-persist/integration/react";
 

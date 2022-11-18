@@ -3,6 +3,7 @@ import { Formik, Form, Field } from "formik";
 import { FaTelegramPlane } from "react-icons/fa";
 import { addProductSchema } from "./AddProductSchema";
 import toast from "react-hot-toast";
+import useSWR, { useSWRConfig } from "swr";
 
 import styles from "./AddProductToShop.module.css";
 import { Spinner } from "../Spinner/Spinner";
@@ -11,6 +12,8 @@ import { addProductToShopAction } from "../../ActionCreators/AddProductToShopAct
 import { useRouter } from "next/router";
 
 export const AddProductToShop = () => {
+  const { mutate } = useSWRConfig();
+
   const [loading, setLoading] = useState(false);
   const [productImage, setProductImage] = useState("");
   const router = useRouter();
@@ -36,6 +39,7 @@ export const AddProductToShop = () => {
             resetForm,
             ethereum: window.ethereum,
             router,
+            mutate
           });
           setSubmitting(false);
         }}

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { fetchShopProductsAction } from "../../ActionCreators/fetchShopProductsActionCreator";
 import { useEffect } from "react";
+import { IndividualShop } from "../../Components/IndividualShop/IndividualShop";
 
 const Shop = () => {
   const queryObject = useRouter().query;
@@ -17,9 +18,7 @@ const Shop = () => {
 
   return (
     <div>
-      <div className="container">
-        Individual shop here .{console.log("This is the shop data ", data)}
-      </div>
+      <IndividualShop data={data}></IndividualShop>
     </div>
   );
 };

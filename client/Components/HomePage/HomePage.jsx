@@ -1,9 +1,9 @@
-import Image from "next/image";
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { RatedShop } from "./BestRatedShopBanner/RatedShop";
 import Carousel from "react-bootstrap/Carousel";
 import { useRouter } from "next/router";
+import useSWR from "swr";
 
 import { HiPlus } from "react-icons/hi";
 
@@ -11,20 +11,27 @@ import styles from "./HomePage.module.css";
 import { useSelector } from "react-redux";
 import { fetchAvailableShopsAction } from "../../ActionCreators/fetchAllShopsActionCreator";
 
-export const HomePage = ({ shopArray }) => {
+export const HomePage = () => {
   const router = useRouter();
-  console.log(shopArray);
+
   const hexToDecimal = (hex) => parseInt(hex, 16);
-  const { userName, userEmail } = useSelector((state) => state.user);
+  const { userName } = useSelector((state) => state.user);
   const { shopName } = useSelector((state) => state.loggedInShop);
-  const availableShops = useSelector((state) => state.allShops.allShopsArray);
+
+  const fetch = async () => {
+    return await fetchAvailableShopsAction();
+  };
+
+  const { data, error } = useSWR("all-shops-available", fetch, {
+    refreshInterval: 2000,
+  });
   return (
     <div className="container-fluid mt-3 mt-md-5 pt-md-3 mt-lg-3 mt-xl-3 pt-lg-0">
       <RatedShop />
       <div
         className={`${styles.lowlyRatedShopsContainer} row  center w-100 container-fluid m-1`}
       >
-        {availableShops?.map((item, index) => (
+        {data?.map((item, index) => (
           <div
             className={`${styles.handleMarginProblem} w-100 center col-sm-12 col-md-6 col-lg-4 col-xl-3 `}
             key={index}
@@ -98,16 +105,4 @@ export const HomePage = ({ shopArray }) => {
       )}
     </div>
   );
-};
-
-export const getStaticProps = async () => {
-  const shopArray = await fetchAvailableShopsAction();
-  console.log(shopArray);
-  return {
-    props: {
-      shopArray,
-    },
-
-    revalidate: 1000, // In seconds
-  };
 };

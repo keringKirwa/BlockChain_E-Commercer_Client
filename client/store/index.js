@@ -16,16 +16,22 @@ import {
   REGISTER,
 } from "redux-persist";
 
-
 const persistConfig = {
   key: "root",
   storage,
 };
-const rootReducer = combineReducers({
+const combinedReducer = combineReducers({
   user: userReducer,
   loggedInShop: shopLoginReducer,
-  allShops:availableShopsReducer
+  allShops: availableShopsReducer,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === "user/logout") {
+    state = undefined;
+  }
+  return combinedReducer(state, action);
+};
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
