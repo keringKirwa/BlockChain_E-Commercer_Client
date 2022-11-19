@@ -36,7 +36,7 @@ export const IndividualShop = ({ shopProducts, sellerAddress }) => {
         <div
           className={`${styles.div} col-sm-12 col-md-4 col-lg-4 col-xl-4 d-none d-lg-block d-lg-block`}
         >
-          <div className={`${styles.shopIconSection} `}>
+          <div className={`${styles.shopIconSection} bg-dark`}>
             {" "}
             <img
               src={shopIconURL}
@@ -59,10 +59,14 @@ export const IndividualShop = ({ shopProducts, sellerAddress }) => {
             <div className={`${styles.insideHandleMargin} `}>
               <img src={product[5][0]} alt="productImage" />
               <div className={`${styles.productDescription} `}>
-                <p>Name : {product[1]}</p>
-                <p>Quantity : {hexToDecimal(product[2])}</p>
+                <p>Name: {product[1]}</p>
+                <p>
+                  Quantity in Stock : <span>{hexToDecimal(product[2])} </span>
+                </p>
                 <p>description : {product[3]}.</p>
-                <p>price :${hexToDecimal(product[4])}</p>
+                <p>
+                  price : $<span> {hexToDecimal(product[4])}</span>
+                </p>
                 <div>array of images .</div>
                 <button className={styles.addToCartButton}>add to cart </button>
               </div>

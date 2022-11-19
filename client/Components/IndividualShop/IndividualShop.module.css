@@ -136,7 +136,11 @@ flex-wrap: wrap-reverse;
     width: 100%;
     padding:20px;
 }
-
+.productDescription p span {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+}
 .addToCartButton{
     width: 50%;
     height: 40px;
