@@ -8,8 +8,6 @@ export const loginToShopAction = async (loginToShopDetails) => {
   const hexToDecimal = (hex) => parseInt(hex, 16);
 
   try {
-    alert(JSON.stringify(values));
-
     const transactionsContract = await createEthereumContract(ethereum);
     const [shopName, iconUrl, sellerAccountAddress, shopIdentifier] =
       await transactionsContract.logIntoMyShop(sellerEthAddress, password);

@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { BigScreenListItem } from "./LargeScreen/BigScreenList";
 import { SmallScreenList } from "./SmallScreen/SmallScreenList";
 
-import { BsFillDiagram3Fill } from "react-icons/bs";
 import { SiPrestashop } from "react-icons/si";
 import { AiOutlineLogin } from "react-icons/ai";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
@@ -58,7 +57,7 @@ const Navbar = () => {
       ></SmallScreenList>
 
       <div
-        className={`${styles.navbarItems}  justify-content-center d-none d-md-none d-lg-flex text-none`}
+        className={`${styles.navbarItems}  justify-content-center d-none  d-lg-flex text-none`}
       >
         {list.map((listItem, index) => (
           <BigScreenListItem

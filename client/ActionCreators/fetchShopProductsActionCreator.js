@@ -1,7 +1,6 @@
 import { createEthereumContract } from "../utils/createEthContract";
 export const fetchShopProductsAction = async (shopAddress) => {
   try {
-    alert("the fetch function was triggered ");
     const transactionsContract = await createEthereumContract(window.ethereum);
     const shopProducts = await transactionsContract.getShopProducts(
       shopAddress

@@ -2,7 +2,6 @@ import useSWR from "swr";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { fetchShopProductsAction } from "../../ActionCreators/fetchShopProductsActionCreator";
-import { useEffect } from "react";
 import { IndividualShop } from "../../Components/IndividualShop/IndividualShop";
 
 const Shop = () => {
@@ -15,10 +14,13 @@ const Shop = () => {
   };
 
   const { data, error } = useSWR(queryObject.address, fetch);
+  console.log("The data  is a as follows :::::", data);
+  /* fetch the details  about the shop that has been clicked Also..this is because the data that we are displaying to the user
+  is dynamic. */
 
   return (
-    <div>
-      <IndividualShop data={data}></IndividualShop>
+    <div >
+      <IndividualShop shopProducts={data} sellerAddress={queryObject.address}></IndividualShop>
     </div>
   );
 };

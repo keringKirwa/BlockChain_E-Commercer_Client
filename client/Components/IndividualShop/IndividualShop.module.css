@@ -1,7 +1,166 @@
 .mainDiv{
     width: 100%;
-    height: 400px ;
-    margin-top: 20px;
-
+margin-top: 63px;
+position: relative;
+max-width: 100% !important;
     
+}
+
+.shopDescription{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.shopDescDiv{
+    position: relative;
+    display: flex;
+    justify-content: center;
+align-items: center;
+flex-wrap: wrap-reverse;
+}
+.shopName{
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.likesAndFollowers{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 10px 0px ;
+}
+.likes,.followers{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 10px;
+}
+.likes{
+    border-right: 1px solid gray;
+    padding-right: 20px;
+}
+
+.likesNumber, .followersNumber{
+    font-size: 20px;
+    font-weight: bold;
+}
+.div{
+    display: flex;
+        justify-content: center;
+        align-items: center;
+
+}
+.emailAndPhone{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.shopIconSection{
+   
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 30px;
+    background-color:black;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    flex-wrap: wrap;
+}
+.shopIconSection:hover {
+    box-shadow: 0px 3px 10px blue;
+    border: 1px solid gray;
+    transition-duration: .4s;
+}
+.handleMarginProblem:hover {
+    box-shadow: 0px 5px 10px gray;
+    border-radius: 20px;
+    transition-duration: .4s;
+}
+
+.shopIconSection img{
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0px 3px 10px red;
+}
+@media screen and (min-width:1000px) {
+    .shopName {
+            font-size: 70px;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+    .likesAndFollowers {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 30px;
+                }
+    .likesNumber,
+    .followersNumber {
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .shopInImage{
+        font-size: 30px;
+
+    }
+    .likes{
+        padding-right: 40px;
+    }
+
+}
+
+/* ---------------------------------------------------PRODUCTS------------------------------------------------- */
+.insideHandleMargin{
+    width: 95% !important;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+
+}
+.insideHandleMargin img{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+
+}
+.productDescription{
+    width: 100%;
+    padding:20px;
+}
+
+.addToCartButton{
+    width: 50%;
+    height: 40px;
+    background-color: black;
+    margin-top: 5px;
+    color: white;
+    border-radius: 5px;
+}
+@media screen and (max-width:440px){
+    .shopIconSection {
+             border-radius: 4px;
+            width: 110px;
+            height: 110px;
+            position: absolute;
+            top:-170px ;
+            right: 5%;
+            
+    
+        }
+    .shopIconSection img {
+        height: 100px;
+        width: 100px;
+        border-radius: 15px;
+        
+                }
+
 }
