@@ -1,4 +1,7 @@
-{
+{"engines" : { 
+    "npm" : "8.19.2",
+    "node" : "14.20.1"
+  },
   "name": "client",
   "version": "0.1.0",
   "private": true,
