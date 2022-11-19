@@ -8,27 +8,35 @@
 
 .modal{
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     left: 0;
     right: 0;
     background-color:beige;
-    padding:100px;
+    padding: 20px ;
     border-radius: 4px;
     z-index: 4;
-   height: 100vh;
-   width: 100%;
+   min-height: 100vh;
    
 
 
 }
+/*  background-image: linear-gradient(60deg, #5e78cc, #f96060);
+ background-clip: text;
+ color: transparent; */
 .textGradient{
     
-  background-image: linear-gradient(60deg, #5e78cc, #f96060);
+background-image: linear-gradient(60deg, #5e78cc, #f96060);
     background-clip: text;
     color: transparent;
     line-height: 30px;
     font-size: 30px;
     font-weight: bold;
     margin-top: 30px;
+
+    width: 100%;
+
     
 }
 .buttonIcon{
@@ -74,6 +82,9 @@
     margin: 5px;    
     border-radius: 10px;
     color: white;
+    width: 45%;
+    height: 50px;
+    font-size: 25px;
    
 }
 .logoutButton {
@@ -114,11 +125,6 @@
 }
 
 @media screen and (max-width: 500px) {
-   
-    .modal{
-        height: 1200px;
-    }
-
    .textGradient {
     line-height: 25px;
     font-size: 25px;

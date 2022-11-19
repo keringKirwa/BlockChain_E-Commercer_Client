@@ -27,14 +27,14 @@ export const Modal = ({
     <div
       className={`${styles.modal} ${
         !whenModelIsNotOpen && "slideFromLeft"
-      } container-fluid  `}
+      } container-fluid `}
     >
-      <p className={`${styles.textGradient} text-center center row  `}>
+      <p className={`${styles.textGradient} text-center center row`}>
         WingsSide,The Best Online Market Platform
         <Image src={image} alt="block image" className={styles.block}></Image>
       </p>
 
-      <div className={`${styles.mainLinkBox}  text-center row `}>
+      <div className={`${styles.mainLinkBox}  text-center row  `}>
         {listItems.map((item, key) => (
           <div
             className={`${styles.linkBoxItem} m-2 text-center col-12`}
@@ -48,7 +48,7 @@ export const Modal = ({
 
         <div
           div
-          className="d-flex justify-content-center align-items-center col-12"
+          className="d-flex justify-content-center align-items-center col-12 mt-3"
         >
           {!userName && (
             <button className={styles.button} onClick={handleLoginRequest}>

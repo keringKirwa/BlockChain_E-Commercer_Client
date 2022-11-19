@@ -54,13 +54,16 @@
         margin-top: 1px;
         font-size: 30px;
         flex: auto;
-
     }
+        
+        .mainContainer {
+                margin-top: -60%;
+        
+            }
 
-    .mainContainer {
-        margin-top: -60%;
+    
 
-    }
+    
 
     .textSection {
         display: flex;
@@ -69,6 +72,13 @@
         margin-top: -50px;
         gap: 10px;
     }
+}
+@media screen and (max-width: 400px){
+    .mainContainer {
+            margin-top: -30%;
+    
+        }
+
 }
 
 @media screen and (min-width: 1000px) {
