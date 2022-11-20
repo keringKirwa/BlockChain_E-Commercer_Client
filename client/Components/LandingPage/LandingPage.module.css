@@ -56,15 +56,10 @@
         flex: auto;
     }
         
-        .mainContainer {
+    .mainContainer {
                 margin-top: -60%;
         
             }
-
-    
-
-    
-
     .textSection {
         display: flex;
         flex-direction: column;

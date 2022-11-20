@@ -1,10 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./IndividualShop.module.css";
+import { AiFillLike, AiOutlinePlus } from "react-icons/ai";
+
 import truncateEthAddress from "truncate-eth-address";
 export const IndividualShop = ({ shopProducts, sellerAddress }) => {
   const { userName, userEmail } = useSelector((state) => state.user);
-  const { shopIconURL, shopName } = useSelector((state) => state.loggedInShop);
+  const { shopIconURL, shopName, shopAddress } = useSelector(
+    (state) => state.loggedInShop
+  );
   console.log("This is the data from the database :: ", shopProducts);
   const hexToDecimal = (hex) => parseInt(hex, 16);
 
@@ -30,6 +34,14 @@ export const IndividualShop = ({ shopProducts, sellerAddress }) => {
           <div className={`${styles.emailAndPhone} `}>
             <p className="gradientColor">📞+254-789-456-100</p>
             <p className="gradientColor">kkirwa230@gmail.com</p>
+          </div>
+          <div className={styles.buttons}>
+            <button className={`${styles.button} text-center`}>
+              <AiFillLike className={styles.upIcon}></AiFillLike> Like
+            </button>
+            <button className={`${styles.button} text-center `}>
+              Follow <AiOutlinePlus></AiOutlinePlus>
+            </button>
           </div>
         </div>
 
@@ -68,7 +80,20 @@ export const IndividualShop = ({ shopProducts, sellerAddress }) => {
                   price : $<span> {hexToDecimal(product[4])}</span>
                 </p>
                 <div>array of images .</div>
-                <button className={styles.addToCartButton}>add to cart </button>
+                {shopAddress == sellerAddress ? (
+                  <div>
+                    <button className={styles.actionButtons}>Edit</button>
+                    <button
+                      className={`${styles.actionButtons} ${styles.deleteButton}`}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ) : (
+                  <button className={styles.addToCartButton}>
+                    add to cart{" "}
+                  </button>
+                )}
               </div>
             </div>
             <div></div>

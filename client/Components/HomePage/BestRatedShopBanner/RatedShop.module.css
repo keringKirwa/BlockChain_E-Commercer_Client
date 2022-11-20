@@ -1,6 +1,5 @@
 .mainContainer{
-    background: rgb(238,174,202);
-background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background-color: #dcdcdc;
     position: relative;
     width: 100%;
     height: auto;
@@ -63,8 +62,8 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 
     color: white;
     position: relative;
     bottom: 17%;
-    color: black;
-    background-color: beige;
+background: rgb(242, 10, 30);
+    background: linear-gradient(90deg, rgba(242, 10, 30, 1) 0%, rgba(10, 114, 238, 1) 100%);
 
     
     

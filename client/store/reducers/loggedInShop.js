@@ -6,6 +6,7 @@ export const loggedInShopSlice = createSlice({
     shopName: "",
     shopId: "",
     shopIconURL: "",
+    shopAddress: "",
   },
 
   reducers: {
@@ -13,6 +14,7 @@ export const loggedInShopSlice = createSlice({
       state.shopName = action.payload.shopName;
       state.shopId = action.payload.shopId;
       state.shopIconURL = action.payload.iconUrl;
+      state.shopAddress = action.payload.sellerAccountAddress;
     },
   },
 });
