@@ -1,7 +1,7 @@
 .mainContainer{
     background-color: #dcdcdc;
     position: relative;
-    width: 100%;
+    width: 100% !important;
     height: auto;
     border-radius: 20px;
     margin-top: 10px;

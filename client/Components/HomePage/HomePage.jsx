@@ -26,14 +26,15 @@ export const HomePage = () => {
     refreshInterval: 2000,
   });
   return window.ethereum ? (
-    <div className="container-fluid mt-3 mt-md-5 pt-md-3 mt-lg-3 mt-xl-3 pt-lg-0">
+    <div>
+      {/* className="container-fluid mt-3 mt-md-5 pt-md-3 mt-lg-3 mt-xl-3 bg-danger " */}
       <RatedShop />
       <div
-        className={`${styles.lowlyRatedShopsContainer} row  center w-100 container-fluid m-1`}
+        className={`${styles.lowlyRatedShopsContainer} container-fluid center `}
       >
         {data?.map((item, index) => (
           <div
-            className={`${styles.handleMarginProblem} w-100 center col-sm-12 col-md-6 col-lg-4 col-xl-3 `}
+            className={`${styles.handleMarginProblem}  col-sm-12 col-md-6 col-lg-4 col-xl-3  w-100 `}
             key={index}
           >
             <div className={`${styles.shop} center `}>

@@ -5,7 +5,7 @@ import { BsFillArrowRightSquareFill } from "react-icons/bs";
 
 export const RatedShop = () => {
   return (
-    <div className={`${styles.mainContainer} container-fluid`}>
+    <div className={`${styles.mainContainer} container-fluid `}>
       <div className={`${styles.sShop} row`}>
         <div className={`${styles.shopSection} col-6 `}>
           <div className={`${styles.shopName} row d-sm-3`}>Shopify.com</div>
