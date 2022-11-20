@@ -90,9 +90,16 @@ export const IndividualShop = ({ shopProducts, sellerAddress }) => {
                     </button>
                   </div>
                 ) : (
-                  <button className={styles.addToCartButton}>
-                    add to cart{" "}
-                  </button>
+                  <div>
+                    <button className={styles.addToCartButton}>
+                      add to cart{" "}
+                    </button>
+                    <button
+                      className={`${styles.actionButtons} ${styles.seeMoreButton}`}
+                    >
+                      See more...
+                    </button>
+                  </div>
                 )}
               </div>
             </div>

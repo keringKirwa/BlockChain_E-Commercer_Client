@@ -48,9 +48,7 @@ export const HomePage = () => {
                 </div>
                 <div className="d-flex flex-column align-items-center justify-content-center">
                   <p className={`${styles.shopName}`}>{item[3]}</p>
-                  <p
-                    className={`${styles.shopDescription} gradientColor text-center`}
-                  >
+                  <p className={`${styles.shopDescription} text-center`}>
                     BuyIt is a shop owned by John Doe.It is the best laptop
                     seller here in the whole of nairobi kenya .
                   </p>

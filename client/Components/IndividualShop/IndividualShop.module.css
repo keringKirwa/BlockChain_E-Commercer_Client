@@ -122,9 +122,9 @@ background: rgb(242, 10, 30);
 .actionButtons{
     width: 43%;
     height: 40px;
-    border-radius: 10px;
+    border-radius: 5px;
     color: white;
-    margin: 0px 1%;
+    margin: 0px 3%;
     color: black;
     
 
@@ -137,6 +137,32 @@ background: rgb(242, 10, 30);
     background-color: red;
     color: white;
     transition-duration: .3s;
+}
+.seeMoreButton{
+    border: 1px solid dodgerblue;
+}
+.seeMoreButton:hover{
+    background-color: beige;
+    border: 2px solid dodgerblue;
+   
+    
+}
+
+.addToCartButton {
+    width: 50%;
+    height: 40px;
+    background-color: black;
+    margin-top: 5px;
+    color: white;
+    border-radius: 5px;
+    
+}
+.addToCartButton:hover{
+    background-color: beige;
+    border: 1px solid black;
+    color: black;
+    transition-duration: .4s;
+
 }
 @media screen and (min-width:1000px) {
     .shopName {
@@ -200,14 +226,7 @@ background: rgb(242, 10, 30);
     font-size: 30px;
     font-weight: bold;
 }
-.addToCartButton{
-    width: 50%;
-    height: 40px;
-    background-color: black;
-    margin-top: 5px;
-    color: white;
-    border-radius: 5px;
-}
+
 @media screen and (max-width:440px){
     .shopIconSection {
              border-radius: 4px;
