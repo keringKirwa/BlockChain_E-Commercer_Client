@@ -25,7 +25,7 @@ export const HomePage = () => {
   const { data, error } = useSWR("all-shops-available", fetch, {
     refreshInterval: 2000,
   });
-  return (
+  return window.ethereum ? (
     <div className="container-fluid mt-3 mt-md-5 pt-md-3 mt-lg-3 mt-xl-3 pt-lg-0">
       <RatedShop />
       <div
@@ -103,6 +103,10 @@ export const HomePage = () => {
           </div>
         </Link>
       )}
+    </div>
+  ) : (
+    <div className={`${styles.pleaseInstallMetamask} text-center`}>
+      Please install metamask !
     </div>
   );
 };
