@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./LandingPage.module.css";
 import image from "../../public/block.svg";
 import { BsArrowRightSquare } from "react-icons/bs";
+import Typewriter from "typewriter-effect";
 
 import { useRouter } from "next/router";
 
@@ -17,21 +18,35 @@ export const LandingPage = () => {
     <div
       className={`container-fluid align-items-center ${styles.mainContainer}`}
     >
-      <div className={`${styles.blockImages} row `}>
+      <div className={`${styles.blockImages} row d-none d-lg-none`}>
         {" "}
         <Image
           src={image}
           alt="block image"
-          className={`${styles.block} slideFromLeft image-responsive col-6`}
+          className={`${styles.block} col-6`}
+          data-aos="flip-right"
+          data-aos-once="false"
+          data-aos-duration="1000"
         ></Image>
         <Image
           src={image}
           alt="block image"
-          className={`${styles.block} slideFromRight image-responsive col-6`}
+          className={`${styles.block} col-6`}
+          data-aos="flip-right"
+          data-aos-once="false"
+          data-aos-duration="1000"
         ></Image>
       </div>
 
-      <div className={`${styles.textSection} row `}>
+      <div className={`${styles.textSection} ${styles.typing} row `}>
+        <Typewriter
+          className="gradientColor"
+          options={{
+            strings: ["Hello there ,", "And welcome to WingSide"],
+            autoStart: true,
+            loop: false,
+          }}
+        />
         <div
           className={`${styles.welcome} container center text-center pt-5 col-12 `}
         >
@@ -49,7 +64,7 @@ export const LandingPage = () => {
           className={`${styles.simpleText} center text-center col-12 `}
           data-aos="fade-up"
           data-aos-delay="200"
-          data-aos-duration="1000"
+          data-aos-duration="3000"
         >
           Buy And sell products using dApp.Smart Contracts For Smart
           Transactions.

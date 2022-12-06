@@ -48,6 +48,9 @@
     transform: scale(1.1);
     transition-duration: 1s;
 }
+.typing{
+    font-size: 25px;
+}
 
 @media screen and (max-width: 450px) {
     .welcome {

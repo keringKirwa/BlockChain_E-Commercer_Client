@@ -75,7 +75,7 @@ export const IndividualShop = ({ shopProducts, sellerAddress }) => {
           >
             <div
               className={`${styles.insideHandleMargin} `}
-              data-aos={index % 2 == 0 ? "flip-right" : "flip-left"}
+              data-aos={index % 2 == 0 ? "zoom-in" : "zoom-in"}
               data-aos-once="false"
               data-aos-duration="500"
             >

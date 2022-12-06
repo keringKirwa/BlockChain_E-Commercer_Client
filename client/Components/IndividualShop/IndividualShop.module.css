@@ -256,5 +256,21 @@ background: rgb(242, 10, 30);
         }
 
 }
+@media screen and (max-width:600px) {
+
+    .handleMarginProblem {
+            box-shadow: none !important;
+           
+            
+            
+        }
+    .insideHandleMargin{
+        border: 1px solid rgb(231, 214, 214);
+            border-radius: 10px;
+
+    }
+    
+
+}
 
 
