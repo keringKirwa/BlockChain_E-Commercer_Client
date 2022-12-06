@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styles from "./IndividualShop.module.css";
 import { AiFillLike, AiOutlinePlus } from "react-icons/ai";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 import truncateEthAddress from "truncate-eth-address";
 export const IndividualShop = ({ shopProducts, sellerAddress }) => {
+  const truncatedEthAddress = truncateEthAddress(sellerAddress);
   const { userName, userEmail } = useSelector((state) => state.user);
   const { shopIconURL, shopName, shopAddress } = useSelector(
     (state) => state.loggedInShop
@@ -56,7 +59,9 @@ export const IndividualShop = ({ shopProducts, sellerAddress }) => {
               className={`${styles.shopImage} image-responsive `}
             />
             <p className={styles.shopInImage}>{shopName}</p>
-            <p>{truncateEthAddress(sellerAddress)}</p>
+            <p className={styles.shopInImage}>
+              {truncateEthAddress(sellerAddress)}
+            </p>
           </div>
         </div>
       </div>
@@ -68,7 +73,12 @@ export const IndividualShop = ({ shopProducts, sellerAddress }) => {
             key={index}
             className={`${styles.handleMarginProblem} w-100 center col-sm-12 col-md-6 col-lg-4 col-xl-3  my-2`}
           >
-            <div className={`${styles.insideHandleMargin} `}>
+            <div
+              className={`${styles.insideHandleMargin} `}
+              data-aos={index % 2 == 0 ? "flip-right" : "flip-left"}
+              data-aos-once="false"
+              data-aos-duration="500"
+            >
               <img src={product[5][0]} alt="productImage" />
               <div className={`${styles.productDescription} `}>
                 <p>Name: {product[1]}</p>

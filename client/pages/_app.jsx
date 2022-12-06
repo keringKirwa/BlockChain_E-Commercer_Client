@@ -12,10 +12,17 @@ import { Toaster } from "react-hot-toast";
 import Scroll from "../Components/Scroll";
 import { mainStore } from "../store/index.js";
 import { Provider } from "react-redux";
+import { useEffect } from "react";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 /*  the store must be in the same level as the redux store .the store is provided to the highest component in  the tree . */
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

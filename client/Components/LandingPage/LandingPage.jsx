@@ -37,10 +37,20 @@ export const LandingPage = () => {
         >
           The Best
         </div>
-        <div className={`${styles.welcome} center text-center col-12`}>
+        <div
+          className={`${styles.welcome} center text-center col-12`}
+          data-aos="flip-left"
+          data-aos-duration="1100"
+          data-aos-delay="100"
+        >
           Online Marketing Platform
         </div>
-        <p className={`${styles.simpleText} center text-center col-12`}>
+        <p
+          className={`${styles.simpleText} center text-center col-12 `}
+          data-aos="fade-up"
+          data-aos-delay="200"
+          data-aos-duration="1000"
+        >
           Buy And sell products using dApp.Smart Contracts For Smart
           Transactions.
         </p>
